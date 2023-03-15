@@ -13,7 +13,7 @@ function App() {
   // The useEffect hook is to be used for single rendering
   useEffect(()=>{
     // Using fetch to fetch the api from flask server it will be redirected to proxy
-    fetch("/book_data").then((res)=>
+    fetch("http://127.0.0.1:5000/book_data").then((res)=>
         res.json().then((data)=>{
           // setting a data from the api
           setData({
