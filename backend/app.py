@@ -12,7 +12,7 @@ CORS(app)
 # The index route
 @app.route("/")
 def index():
-    return "Hello welcome to my react and flask profect"
+    return "Welcome to the school MS dear user"
   
 # Route for seeing a data
 @app.route('/book_data')
