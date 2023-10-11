@@ -21,6 +21,7 @@ FieldsOfStudy{
     FOS_Id: varchar e.g FOS23
     Title: varchar,
     description: varchar,
+    sub_fields: varchar,
     Reg_at: dateTime,
     Reg_by: varchar, FK(A_Id),
     upd_at: dateTime,
@@ -48,8 +49,55 @@ StudentProfile{
     S_Name: varchar, F_name + L_Name  (from Users),
     Institution: varchar,
     FieldsOfStudy: varchar, FK(FOS_Id),
+    Preferences: varchar, must be one of the fields in the FOS table,
     Skills: text,
     LevelOfEducation: varchar, e.g diploma, certificate, bachelor's deegree, masters' deegree,
     period: int, e.g years,
     Join&EndDate: dateTime, from the API, these will be entered separately and in the db stored as one column
+    status: varchar, e.g alumni,
+    LinkedIn: varchar, nullable,
+    Whatsapp: varchar,
+    Github: varchar,
+    Bitbucket: varchar,
+    email: varchar,
+    profile_pic: file,
+    Reg_at: dateTime,
+    Reg_by: varchar, FK(A_Id),
+    upd_at: dateTime
 }
+
+CompanyProfile{
+    id: int automatically generated,
+    CP_Id: varchar,
+    Company_Contact: varchar, FK(U_Id),
+    Industry: varchar,
+    Location: varchar,
+    website: varchar,
+    LinkedIn: varchar, nullable,
+    Whatsapp: varchar,
+    Github: varchar,
+    Bitbucket: varchar,
+    email: varchar,
+    profile_pic: file,
+    Reg_at: dateTime,
+    Reg_by: varchar, FK(A_Id),
+    upd_at: dateTime
+}
+
+InternShips{
+    id: int automatically generated,
+    IN_Id: varchar, 
+    Company_Id: varchar , FK(CP_Id),
+    Title: varchar (internship position title), 
+    description: text,
+    requirements: text,
+    terms: varchar,
+    duration_type: varchar e.g weeks,
+    duration: int,
+    Schedule: varchar e.g full time, partime,
+    structure: varchar e.g physical, remote, 
+    slots_available: int,
+    application_deadline: date,
+    internship_location: varchar (the company might be having branches),
+}
+
