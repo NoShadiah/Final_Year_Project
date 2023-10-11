@@ -161,7 +161,8 @@ FAQs{
 
 Interview_Questions_Categories{
     id: int,
-    IQn_ID: varchar,
+    IQC_ID: varchar,
+    QC_name: varchar,
     FOS_Id: varchar, FK(FOS_Id),
     Education_level: varchar,
     Reg_at: dateTime,
@@ -170,3 +171,13 @@ Interview_Questions_Categories{
     upd_by: varchar, FK(A_Id)
 }
 
+Interview_questions{
+    id: int,
+    Qn_Id: varchar,
+    IQC_Id: varchar, FK(IQC_ID),
+    Qn_body: Text,
+    Reg_at: dateTime,
+    Reg_by: varchar, FK(A_Id),
+    upd_at: dateTime,
+    upd_by: varchar, FK(A_Id)
+}
