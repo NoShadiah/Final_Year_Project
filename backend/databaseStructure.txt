@@ -101,3 +101,72 @@ InternShips{
     internship_location: varchar (the company might be having branches),
 }
 
+StudentInternshipMatches{ still thinking about it(maybe a student saves the internship to apply later/ applies)
+    id: int automatically generated,
+    SIM_ID: varchar,
+    Student_Id: varchar, FK(S_Id),
+    Internship_Id: varchar, FK(IN_Id),
+    Made at: varchar
+}
+
+Applications{
+    id: int automatically generated,
+    A_Id: varchar,
+    Student_Id: varchar, FK(S_Id)
+    Internship_Id: varchar,FK(IN_Id),
+    cover_letter: file,
+    introductory_letter: file,
+    curriculum_vitae: file,
+    Application_status: varchar, e.g approved, pending, rejected,
+    Application_date: dateTime
+}
+
+Communications{
+    id: int automatically generated,
+    Comm_Id: varchar,
+    Sender_Id: varchar, FK(U_Id),
+    Recipent_Id: varchar, FK(U_Id),
+    sent_at; dateTime
+}
+
+Reviews{
+    id: int,
+    R_Id: varchar,
+    reviewer_id: varchar ,FK(U_Id),
+    review_text: text,
+    Rating: int,
+    Admin_feedback: text.
+    Made_at: dateTime,
+    upd_at:dateTime
+}
+
+Testimonials{
+    id: int,
+    T_ID: varchar,
+    U_Id: varchar, FK(U_Id/S_Id),
+    Testimaonial_text: text,
+    Internship_Id: varchar, FK(IN_Id),
+    Reg_at: dateTime
+}
+
+FAQs{
+    id: int,
+    FAQ_Id: varchar,
+    U_Id: varchar, FK(U_Id),
+    Qn_body: text,
+    Post_Date: dateTime,
+    Resp_by: varchar, FK(A_Id),
+    Resp_Body: text
+}
+
+Interview_Questions_Categories{
+    id: int,
+    IQn_ID: varchar,
+    FOS_Id: varchar, FK(FOS_Id),
+    Education_level: varchar,
+    Reg_at: dateTime,
+    Reg_by: varchar, FK(A_Id),
+    upd_at: dateTime,
+    upd_by: varchar, FK(A_Id)
+}
+
