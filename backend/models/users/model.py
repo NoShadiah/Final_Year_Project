@@ -13,8 +13,8 @@ class User(db.Model):
   contact: int
   address:str
   user_type: str
-
-  id = db.Column(db.Integer, primary_key = True)
+  id = db.Column(db.Integer)
+  U_Id = db.Column(db.Integer, primary_key = True)
   first_name = db.Column(db.String(100),nullable=False)
   last_name = db.Column(db.String(100),nullable=False)
   gender = db.Column(db.String(6))
@@ -27,10 +27,7 @@ class User(db.Model):
   updated_at = db.Column(db.String(200),nullable=True, onupdate=datetime.now())
   
   food_categories = db.relationship("FoodCategory",backref="user")
-  food_items = db.relationship("FoodItem", backref="user")
-#   menu = db.relationship("MenuItem", backref="user")
-  gallery = db.relationship("GalleryItem", backref="user")
-  orders = db.relationship("Order",  backref="user")
+  
 
 
   def __init__(self, first_name, last_name, email,contact,user_type,password, gender, address):

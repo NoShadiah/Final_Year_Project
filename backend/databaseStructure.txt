@@ -2,6 +2,15 @@
 Admin{
     id: int,
     A_Id: varchar, e.g A002
+    F_name: varchar,
+    L_name: Varchar,
+    age: int,
+    gender: char,
+    email: Varchar,
+    Contact: int,
+    Address: varchar,
+    password: varchar, 26, unique,
+    profile_pic: file
     Reg_at: dateTime,
     upd_at: datetime
 }
@@ -34,6 +43,7 @@ Users{
     F_name: varchar,
     L_name: Varchar,
     age: int,
+    gender: char,
     email: Varchar,
     Contact: int,
     Address: varchar,
