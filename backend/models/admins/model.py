@@ -67,4 +67,4 @@ class Admin(db.Model):
         self.updated_at = updated_at
 
     def __repr__(self):
-        return f"<{self.admin_type} {self.last_name} {self.first_name}>"
+        return f"<{self.admin_type} {self.L_name} {self.F_name}>"

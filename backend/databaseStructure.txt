@@ -17,6 +17,7 @@ Admin{
 User_Roles{
     id: int automatically generated,
     UR_Id: varchar e.g UR3,
+    title: varchar
     description: text,
     Reg_at: dateTime,
     Reg_by: varchar, FK(A_Id),
