@@ -10,7 +10,7 @@ Admin{
     Contact: int,
     Address: varchar,
     password: varchar, 26, unique,
-    profile_pic: file
+    profile_pic: file,
     Reg_at: dateTime,
     upd_at: datetime
 }
