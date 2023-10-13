@@ -1,4 +1,4 @@
-from db import db
+from models.db import db
 from datetime import datetime
 from dataclasses import dataclass
 from models.admins.model import Admin
@@ -8,15 +8,16 @@ class UserRole(db.Model):
 
     id: int
     ur_Id: str
+    title: str
     description: str
-    Reg_at: str
-    Reg_by: str
+    reg_at: str
+    reg_by: str
     upd_at: str
     upd_by: str
 
     # columns
     id = db.Column(db.Integer)
-    ur_Id = db.Column(db.String(5), nullable=False, unique=True)
+    ur_Id = db.Column(db.String(5), nullable=False, unique=True, primary_key = True)
     title = db.Column(db.String(70), nullable=False, unique=True)
     description = db.Column(db.Text, nullable=False)
     reg_at = db.Column(db.String(50), nullable=False, default=datetime.now())
@@ -24,9 +25,10 @@ class UserRole(db.Model):
     upd_at = db.Column(db.String(50), nullable=False, onupdate=datetime.now())
     upd_by = db.Column(db.String(3), db.ForeignKey("admins.A_Id"))
 
-    def __init__(self, ur_id, description,
+    def __init__(self, ur_id, description,title,
                  reg_at, reg_by, upd_at, upd_by):
         self.ur_id = ur_id
+        self.title = title
         self.description = description
         self.reg_at = reg_at
         self.reg_by= reg_by
