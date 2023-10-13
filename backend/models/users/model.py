@@ -1,51 +1,56 @@
-# from models.db import db
-# from dataclasses import dataclass
-# from datetime import datetime
+from models.db import db
+from dataclasses import dataclass
+from datetime import datetime
 
-# @dataclass
-# class User(db.Model):
-#   __tablename__ = 'users'
+@dataclass
+class User(db.Model):
+  __tablename__ = 'users'
 
-#   id: int
-#   first_name: str
-#   last_name: str
-#   email: str
-#   contact: int
-#   address:str
-#   user_type: str
-#   id = db.Column(db.Integer)
-#   U_Id = db.Column(db.Integer, primary_key = True)
-#   first_name = db.Column(db.String(100),nullable=False)
-#   last_name = db.Column(db.String(100),nullable=False)
-#   gender = db.Column(db.String(6))
-#   email = db.Column(db.String(50))  
-#   contact = db.Column(db.String(200))
-#   address = db.Column(db.String(200))
-#   user_type = db.Column(db.String(100),default="client")
-#   password = db.Column(db.String(10))
-#   registered_at = db.Column(db.String(200),nullable=True, default=datetime.now())
-#   updated_at = db.Column(db.String(200),nullable=True, onupdate=datetime.now())
+  id: int
+  U_Id: str
+  F_name: str
+  L_name: str
+  age: int
+  gender: str
+  email: str
+  contact: int
+  address:str
+  user_type: str
+
+
+  id = db.Column(db.Integer, unique=True, nullable=False)
+  U_Id = db.Column(db.Integer, primary_key = True, unique=True)
+  F_name = db.Column(db.String(100),nullable=False)
+  L_name = db.Column(db.String(100),nullable=False)
+  gender = db.Column(db.String(6), nullable=False)
+  age = db.Column(db.Integer, nullable=False)
+  email = db.Column(db.String(50), nullable=False, unique=True)  
+  contact = db.Column(db.String(200), nullable=False, unique=True)
+  address = db.Column(db.String(200), nullable=False)
+  user_type = db.Column(db.String(100),default="student", nullabe=False)
+  password = db.Column(db.String(20), unique=True, nullable=False)
+  registered_at = db.Column(db.String(200),nullable=True, default=datetime.now(), unique=True)
+  updated_at = db.Column(db.String(200),nullable=True, onupdate=datetime.now(), unique=True)
   
-#   food_categories = db.relationship("FoodCategory",backref="user")
+  company_profiles = db.relationship("CompanyProfile",backref="user")
   
 
 
-#   def __init__(self, first_name, last_name, email,contact,user_type,password, gender, address):
-#    self.first_name = first_name
-#    self.last_name = last_name
-#    self.email = email
-#    self.contact = contact
-#    self.user_type = user_type
-#    self.password = password
-#    self.gender = gender
-#    self.address = address
+  def __init__(self, U_Id, F_name, L_name, email,contact,user_type,password, gender, address, age):
+   self.U_Id = U_Id
+   self.F_name = F_name
+   self.L_name = L_name
+   self.age = age
+   self.email = email
+   self.contact = contact
+   self.user_type = user_type
+   self.password = password
+   self.gender = gender
+   self.address = address
    
 
-  
-
-
-#   def __repr__(self):
-#         return f"<User {self.last_name} {self.first_name}>"
+  def __repr__(self):
+        return f"<User {self.L_name} {self.F_name}>"
   
 
         

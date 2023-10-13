@@ -25,6 +25,7 @@ User_Roles{
     upd_by: varchar, FK(A_Id),
 }
 
+To be help for future purposes.
 FieldsOfStudy{
     id: int automatically generated,
     FOS_Id: varchar e.g FOS23
@@ -37,12 +38,13 @@ FieldsOfStudy{
     upd_by: varchar, FK(A_Id)
 }
 
-Opportunity_categories{
+Sub_Fields{
     id: int automatically generated,
-    SFC_Id: varchar, unique_primaryKey
+    SF_Id: varchar, unique_primaryKey
     Title: varchar,
     description: varchar,
     FOS: varchar, default ComputerScience
+    sample_image: varchar
     Reg_at: dateTime,
     Reg_by: varchar, FK(A_Id),
     upd_at: dateTime,
