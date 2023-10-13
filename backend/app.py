@@ -5,6 +5,9 @@ from models.admins.model import Admin
 from models.user_roles.model import UserRole
 from models.FieldCategories.model import Sub_Fields
 from models.users.model import User
+from models.company_profile.model import CompanyProfile
+from models.internships.model import InternShip
+from models.interview_QN_categories.model import InterviewQuestionCategory
 # import datetime
 from flask_migrate import Migrate
 from flask_cors import CORS
@@ -22,5 +25,8 @@ def make_shell_context():
                Admin = Admin,
                UserRole = UserRole,
                Sub_Fields=Sub_Fields,
-               User = User
+               User = User,
+               CompanyProfile = CompanyProfile,
+               InternShip = InternShip,
+               InterviewQuestionCategory = InterviewQuestionCategory
                )

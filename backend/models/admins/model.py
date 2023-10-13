@@ -38,6 +38,9 @@ class Admin(db.Model):
     # relationships
     user_roles = db.relationship("UserRole", backref="user")
     sub_fields = db.relationship("Sub_Fields", backref="user")
+    sub_fields = db.relationship("CompanyProfile", backref="user")
+    sub_fields = db.relationship("Internship", backref="user")
+    sub_fields = db.relationship("InterviewQuestionCategory", backref="user")
     
     def __init__(self, 
                  A_Id, 

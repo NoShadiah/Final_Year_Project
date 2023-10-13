@@ -19,7 +19,7 @@ class User(db.Model):
 
 
   id = db.Column(db.Integer, unique=True, nullable=False)
-  U_Id = db.Column(db.Integer, primary_key = True, unique=True)
+  U_Id = db.Column(db.String(5), primary_key = True, unique=True)
   F_name = db.Column(db.String(100),nullable=False)
   L_name = db.Column(db.String(100),nullable=False)
   gender = db.Column(db.String(6), nullable=False)
@@ -27,7 +27,7 @@ class User(db.Model):
   email = db.Column(db.String(50), nullable=False, unique=True)  
   contact = db.Column(db.String(200), nullable=False, unique=True)
   address = db.Column(db.String(200), nullable=False)
-  user_type = db.Column(db.String(100),default="student", nullabe=False)
+  user_type = db.Column(db.String(100),default="student")
   password = db.Column(db.String(20), unique=True, nullable=False)
   registered_at = db.Column(db.String(200),nullable=True, default=datetime.now(), unique=True)
   updated_at = db.Column(db.String(200),nullable=True, onupdate=datetime.now(), unique=True)
