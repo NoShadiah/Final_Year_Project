@@ -25,6 +25,8 @@ class InterviewQuestionCategory(db.Model):
     reg_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
     upd_at = db.Column(db.String(100), nullable=False, onupdate=datetime.now())
     upd_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
+
+    interview_questions = db.relationship("InterviewQuestion", backref="interviewquestioncategory")
     
 
     def __init__(self,

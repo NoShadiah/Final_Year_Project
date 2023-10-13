@@ -9,6 +9,7 @@ Admin{
     Contact: int, unique
     Address: varchar,
     password: varchar, 26, unique,
+    company_code: varchar, 20, unique only uppercase letters
     profile_pic: file,
     Reg_at: dateTime,
     upd_at: datetime
@@ -68,8 +69,9 @@ Interview_Questions_Categories{
 Interview_questions{
     id: int,
     Qn_Id: varchar,
-    IQC_Id: varchar, FK(IQC_ID),
+    Qn_Title: varchar,
     Qn_body: Text,
+    IQC_Id: varchar, FK(IQC_ID),
     Reg_at: dateTime,
     Reg_by: varchar, FK(A_Id),
     upd_at: dateTime,

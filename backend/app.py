@@ -8,6 +8,7 @@ from models.users.model import User
 from models.company_profile.model import CompanyProfile
 from models.internships.model import InternShip
 from models.interview_QN_categories.model import InterviewQuestionCategory
+from models.interview_questions.model import InterviewQuestion
 # import datetime
 from flask_migrate import Migrate
 from flask_cors import CORS
@@ -28,5 +29,6 @@ def make_shell_context():
                User = User,
                CompanyProfile = CompanyProfile,
                InternShip = InternShip,
-               InterviewQuestionCategory = InterviewQuestionCategory
+               InterviewQuestionCategory = InterviewQuestionCategory, 
+               InterviewQuestion =InterviewQuestion
                )

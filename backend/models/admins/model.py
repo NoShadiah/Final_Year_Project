@@ -17,6 +17,7 @@ class Admin(db.Model):
     Contact: int
     Address: str
     password: str
+    company_code: str
     Reg_at: str
     updated_at: str
 
@@ -30,6 +31,7 @@ class Admin(db.Model):
     Contact= db.Column(db.String(10), nullable=False, unique = True)
     Address= db.Column(db.String(100), nullable=False)
     password= db.Column(db.String(30), unique = True, nullable=False)
+    company_code = db.Column(db.String(8), unique=True, nullable=False)
     admin_type= db.Column(db.String(15), unique = True, nullable = False, default = "Manager")
     profile_image= db.Column(db.String(200), nullable = False, default = "https://media.istockphoto.com/id/1313958250/vector/user-avatar-profile-icon-black-vector-illustration-on-transparent-background-website-or-app.jpg?s=170667a&w=0&k=20&c=jWdfqd_wjXbteDFLeMaaKwknZYyia6RHWKU3zosiinI=")
     Reg_at = db.Column(db.String(30), nullable=False, default=datetime.now())
@@ -38,9 +40,10 @@ class Admin(db.Model):
     # relationships
     user_roles = db.relationship("UserRole", backref="user")
     sub_fields = db.relationship("Sub_Fields", backref="user")
-    sub_fields = db.relationship("CompanyProfile", backref="user")
-    sub_fields = db.relationship("Internship", backref="user")
-    sub_fields = db.relationship("InterviewQuestionCategory", backref="user")
+    company_profiles = db.relationship("CompanyProfile", backref="user")
+    internships = db.relationship("Internship", backref="user")
+    question_categories = db.relationship("InterviewQuestionCategory", backref="user")
+    interview_questions = db.relationship("InterviewQuestion", backref="user")
     
     def __init__(self, 
                  A_Id, 
@@ -52,6 +55,7 @@ class Admin(db.Model):
                  Contact, 
                  Address, 
                  password,
+                 company_code,
                  admin_type,
                  profile_image,
                  Reg_at,
@@ -65,6 +69,7 @@ class Admin(db.Model):
         self.Contact =  Contact
         self.Address =  Address
         self.password = password
+        self.company_code = company_code
         self.admin_type = admin_type
         self.profile_image = profile_image
         self.Reg_at = Reg_at
