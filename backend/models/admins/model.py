@@ -21,8 +21,8 @@ class Admin(db.Model):
     Reg_at: str
     updated_at: str
 
-    id = db.Column(db.Integer, nullable=False, unique=True, autoincrement=True)
-    A_Id = db.Column(db.String(2), primary_key = True, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    A_Id = db.Column(db.String(2), unique=True, nullable=False)
     F_name= db.Column(db.String(20), nullable=False)
     L_name= db.Column(db.String(20), nullable=False)
     age= db.Column(db.Integer, nullable=False)

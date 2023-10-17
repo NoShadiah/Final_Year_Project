@@ -16,14 +16,14 @@ class UserRole(db.Model):
     upd_by: str
 
     # columns
-    id = db.Column(db.Integer, nullable = False, unique=True)
-    ur_Id = db.Column(db.String(5), nullable=False, unique=True, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True)
+    ur_Id = db.Column(db.String(5), nullable=False, unique=True)
     title = db.Column(db.String(70), nullable=False, unique=True)
     description = db.Column(db.Text, nullable=False, unique=True)
     reg_at = db.Column(db.String(50), nullable=False, default=datetime.now())
-    reg_by = db.Column(db.String(3), db.ForeignKey("admins.A_Id"))
+    reg_by = db.Column(db.Integer, db.ForeignKey("admins.id"))
     upd_at = db.Column(db.String(50), nullable=False, onupdate=datetime.now())
-    upd_by = db.Column(db.String(3), db.ForeignKey("admins.A_Id"))
+    upd_by = db.Column(db.Integer, db.ForeignKey("admins.id"))
 
     def __init__(self, ur_id, description,title,
                  reg_at, reg_by, upd_at, upd_by):
