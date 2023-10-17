@@ -29,6 +29,8 @@ class Sub_Fields(db.Model):
     upd_at = db.Column(db.String(30), onupdate=datetime.now())
     upd_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
 
+    student_profiles=db.relationship("StudentProfile", backref="sub_fields")
+
     def __init__(self, 
     id,
     SF_Id,

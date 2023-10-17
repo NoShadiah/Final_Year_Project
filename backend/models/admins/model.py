@@ -21,7 +21,7 @@ class Admin(db.Model):
     Reg_at: str
     updated_at: str
 
-    id = db.Column(db.Integer, nullable=False, unique=True)
+    id = db.Column(db.Integer, nullable=False, unique=True, autoincrement=True)
     A_Id = db.Column(db.String(2), primary_key = True, nullable=False)
     F_name= db.Column(db.String(20), nullable=False)
     L_name= db.Column(db.String(20), nullable=False)
@@ -38,13 +38,17 @@ class Admin(db.Model):
     updated_at = db.Column(db.String(30), nullable=True, onupdate=datetime.now())
 
     # relationships
-    user_roles = db.relationship("UserRole", backref="user")
-    sub_fields = db.relationship("Sub_Fields", backref="user")
-    company_profiles = db.relationship("CompanyProfile", backref="user")
-    internships = db.relationship("Internship", backref="user")
-    question_categories = db.relationship("InterviewQuestionCategory", backref="user")
-    interview_questions = db.relationship("InterviewQuestion", backref="user")
-    
+    user_roles = db.relationship("UserRole", backref="admin")
+    sub_fields = db.relationship("Sub_Fields", backref="admin")
+    company_profiles = db.relationship("CompanyProfile", backref="admin")
+    internships = db.relationship("Internship", backref="admin")
+    question_categories = db.relationship("InterviewQuestionCategory", backref="admin")
+    interview_questions = db.relationship("InterviewQuestion", backref="admin")
+    tips = db.relationship("Tip", backref="admin")
+    reviews = db.relationship("Review", backref="admin")
+    frequently_asked_questions = db.backref("FAQ", backref="admin")
+    messages = db.relationship("Message", backref="admin")
+
     def __init__(self, 
                  A_Id, 
                  F_name,

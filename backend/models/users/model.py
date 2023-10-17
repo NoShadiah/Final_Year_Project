@@ -33,6 +33,11 @@ class User(db.Model):
   updated_at = db.Column(db.String(200),nullable=True, onupdate=datetime.now(), unique=True)
   
   company_profiles = db.relationship("CompanyProfile",backref="user")
+  student_profiles = db.relationship("StudentProfile",backref="user")
+  reviews = db.relationship("Review",backref="user")
+  testimonials = db.relationship("Testimonial", backref = "user")
+  frequently_asked_questions = db.relationship("FAQ", backref="user")
+  messages = db.relationship("Message", backref="user")
   
 
 

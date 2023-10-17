@@ -9,6 +9,7 @@ Admin{
     Contact: int, unique
     Address: varchar,
     password: varchar, 26, unique,
+    admin_type: varchar
     company_code: varchar, 20, unique only uppercase letters
     profile_pic: file,
     Reg_at: dateTime,

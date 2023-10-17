@@ -48,6 +48,9 @@ class InternShip(db.Model):
     upd_at = db.Column(db.String(100), nullable=False, onupdate=datetime.now())
     upd_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
 
+    saved_internships = db.relationship("SavedInternships", backref="internship")
+    applications = db.relationship("Application", backref="internship")
+    
     def __init__(self,
                 id,
                 IN_Id,
