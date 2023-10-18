@@ -3,7 +3,7 @@ from flask import Flask
 from models import create_app, db
 from models.admins.model import Admin
 from models.user_roles.model import UserRole
-from models.FieldCategories.model import Sub_Fields
+from models.FieldCategories.model import Sub_Field
 from models.users.model import User
 from models.company_profile.model import CompanyProfile
 from models.internships.model import InternShip
@@ -33,7 +33,7 @@ def make_shell_context():
    return dict(db=db, 
                Admin = Admin,
                UserRole = UserRole,
-               Sub_Fields=Sub_Fields,
+               Sub_Field=Sub_Field,
                User = User,
                CompanyProfile = CompanyProfile,
                InternShip = InternShip,

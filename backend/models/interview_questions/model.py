@@ -24,28 +24,6 @@ class InterviewQuestion(db.Model):
     reg_at = db.Column(db.String(100), nullable=False, default=datetime.now()) 
     reg_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
     upd_at = db.Column(db.String(100), nullable=False, onupdate=datetime.now())
-    upd_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
+    upd_by = db.Column(db.String(2), default="Not yet")
 
-    def __init__(self, 
-                id,
-                Qn_Id,
-                Q_Title,
-                Qn_body,
-                IQC_Id,
-                reg_at,
-                reg_by,
-                upd_at,
-                upd_by):
-
-                self.id = id
-                self.Qn_Id = Qn_Id
-                self.Q_Title = Q_Title
-                self.Qn_body = Qn_body
-                self.IQC_Id = IQC_Id
-                self.reg_at = reg_at
-                self.reg_by = reg_by
-                self.upd_at = upd_at
-                self.upd_by = upd_by
-
-    def __repr__(self):
-            return f"<Interview Question{self.Qn_Id}---------{self.Qn_body}>"
+    

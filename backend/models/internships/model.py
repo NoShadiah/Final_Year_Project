@@ -46,51 +46,9 @@ class InternShip(db.Model):
     reg_at = db.Column(db.String(100), nullable=False, default=datetime.now()) 
     reg_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
     upd_at = db.Column(db.String(100), nullable=False, onupdate=datetime.now())
-    upd_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
+    upd_by = db.Column(db.String(2), default="Not yet")
 
-    saved_internships = db.relationship("SavedInternships", backref="internship")
-    applications = db.relationship("Application", backref="internship")
+    saved_internships = db.relationship("SavedInternship", backref="internship", lazy="dynamic")
+    applications = db.relationship("Application", backref="internship", lazy="dynamic")
     
-    def __init__(self,
-                id,
-                IN_Id,
-                Company_Id,
-                title,
-                description,
-                requirements,
-                terms,
-                duration_type,
-                duration,
-                Schedule,
-                structure,
-                status,
-                slots_available,
-                application_deadline,
-                internship_location,
-                reg_at,
-                reg_by,
-                upd_at,
-                upd_by):
-        
-        self.id = id
-        self.IN_Id = IN_Id
-        self.Company_Id = Company_Id
-        self.title = title
-        self.description = description 
-        self.requirements = requirements
-        self.terms = terms
-        self.duration_type = duration_type
-        self.duration = duration
-        self.Schedule = Schedule
-        self.structure = structure
-        self.status = status
-        self.slots_available = slots_available
-        self.application_deadline = application_deadline
-        self.internship_location = internship_location
-        self.reg_at = reg_at
-        self.reg_by = reg_by
-        self.upd_at = upd_at
-        self.upd_by = upd_by
-
-    def __repr__(self):
-        return f"<Internship at {self.Company_Id}, Title: {self.title}"
+    

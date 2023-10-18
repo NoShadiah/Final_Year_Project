@@ -27,38 +27,17 @@ class User(db.Model):
   email = db.Column(db.String(50), nullable=False, unique=True)  
   contact = db.Column(db.String(200), nullable=False, unique=True)
   address = db.Column(db.String(200), nullable=False)
-  user_type = db.Column(db.String(100),default="student")
+  user_type = db.Column(db.String(10),default="student")
   password = db.Column(db.String(20), unique=True, nullable=False)
   registered_at = db.Column(db.String(200),nullable=True, default=datetime.now(), unique=True)
   updated_at = db.Column(db.String(200),nullable=True, onupdate=datetime.now(), unique=True)
   
-  company_profiles = db.relationship("CompanyProfile",backref="user")
-  student_profiles = db.relationship("StudentProfile",backref="user")
-  reviews = db.relationship("Review",backref="user")
-  testimonials = db.relationship("Testimonial", backref = "user")
-  frequently_asked_questions = db.relationship("FAQ", backref="user")
-  messages = db.relationship("Message", backref="user")
+  company_profiles = db.relationship("CompanyProfile",backref="user", lazy="dynamic")
+  student_profiles = db.relationship("StudentProfile",backref="user", lazy="dynamic")
+  reviews = db.relationship("Review",backref="user", lazy="dynamic")
+  testimonials = db.relationship("Testimonial", backref = "user", lazy="dynamic")
+  frequently_asked_questions = db.relationship("FAQ", backref="user", lazy="dynamic")
+  messages = db.relationship("Message", backref="user", lazy="dynamic")
   
 
 
-  def __init__(self, U_Id, F_name, L_name, email,contact,user_type,password, gender, address, age):
-   self.U_Id = U_Id
-   self.F_name = F_name
-   self.L_name = L_name
-   self.age = age
-   self.email = email
-   self.contact = contact
-   self.user_type = user_type
-   self.password = password
-   self.gender = gender
-   self.address = address
-   
-
-  def __repr__(self):
-        return f"<User {self.L_name} {self.F_name}>"
-  
-
-        
-   
- 
- 

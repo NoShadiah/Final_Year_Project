@@ -24,32 +24,9 @@ class InterviewQuestionCategory(db.Model):
     reg_at = db.Column(db.String(100), nullable=False, default=datetime.now()) 
     reg_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
     upd_at = db.Column(db.String(100), nullable=False, onupdate=datetime.now())
-    upd_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
+    upd_by = db.Column(db.String(2), default="Not yet")
 
-    interview_questions = db.relationship("InterviewQuestion", backref="interviewquestioncategory")
+    interview_questions = db.relationship("InterviewQuestion", backref="question_category", lazy="dynamic")
     
 
-    def __init__(self,
-                id,
-                IQC_ID,
-                QC_name,
-                subfield_Id,
-                Education_level,
-                reg_at,
-                reg_by,
-                upd_at,
-                upd_by):
-
-
-                self.id=id
-                self.IQC_ID=IQC_ID
-                self.QC_name=QC_name
-                self.subfield_Id=subfield_Id
-                self.Education_level=Education_level
-                self.reg_at = reg_at
-                reg_by = reg_by
-                upd_at = upd_at
-                upd_by = upd_by
-
-    def __repr__(self):
-            return f"<Question Category -------- {self.QC_name}"
+    

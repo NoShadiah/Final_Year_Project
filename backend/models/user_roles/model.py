@@ -21,19 +21,8 @@ class UserRole(db.Model):
     title = db.Column(db.String(70), nullable=False, unique=True)
     description = db.Column(db.Text, nullable=False, unique=True)
     reg_at = db.Column(db.String(50), nullable=False, default=datetime.now())
-    reg_by = db.Column(db.Integer, db.ForeignKey("admins.id"))
+    reg_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"))
     upd_at = db.Column(db.String(50), nullable=False, onupdate=datetime.now())
-    upd_by = db.Column(db.Integer, db.ForeignKey("admins.id"))
+    upd_by = db.Column(db.String(2), default="Not yet")
 
-    def __init__(self, ur_id, description,title,
-                 reg_at, reg_by, upd_at, upd_by):
-        self.ur_id = ur_id
-        self.title = title
-        self.description = description
-        self.reg_at = reg_at
-        self.reg_by= reg_by
-        self.upd_at = upd_at
-        self.upd_by = upd_by
-
-    def __repr__(self):
-        return f"<{self.title} :{self.description}>"
+    

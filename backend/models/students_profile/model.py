@@ -26,7 +26,7 @@ class StudentProfile(db.Model):
     email: str
     profile_pic: str
     reg_at: str
-    reg_by: str 
+    # reg_by: str 
     upd_at: str
     upd_by:str
 
@@ -50,9 +50,9 @@ class StudentProfile(db.Model):
     email = db.Column(db.String(50), nullable = False, unique=True) #Should be automatically generated from the users table
     profile_pic = db.Column(db.String(1200), nullable = False)
     reg_at = db.Column(db.String(20), default = datetime.now())
-    reg_by = db.Column(db.String(5), db.ForeignKey("users.U_Id"))
+    # reg_by = db.Column(db.String(5), db.ForeignKey("users.U_Id"))
     upd_at = db.Column(db.String(20), onupdate = datetime.now())
-    upd_by = db.Column(db.String(5), db.ForeignKey("users.U_Id"))
+    upd_by = db.Column(db.String(40), default="Not yet")
 
-    saved_internships = db.relationship("SavedInternships", backref="studentprofile")
-    applications = db.relationship("Application", backref="studentprofile")
+    saved_internships = db.relationship("SavedInternship", backref="student_profile", lazy="dynamic")
+    applications = db.relationship("Application", backref="student_profile", lazy="dynamic")

@@ -10,34 +10,34 @@ from flasgger import swag_from
 
 admins = Blueprint('admins', __name__, url_prefix='/api/v1/admins')
 
-# #admin login
-# @admins.route("/token", methods=["POST"])
-# @swag_from('../documentation/docs/admin/login.yaml')
-# def login():
-#     email = request.json.get("email")
-#     admin_password = request.json.get("password")
-#     admin = Admin.query.filter_by(email=email).first()
+#admin login
+@admins.route("/token", methods=["POST"])
+@swag_from('../documentation/docs/admin/login.yaml')
+def login():
+    email = request.json.get("email")
+    admin_password = request.json.get("password")
+    admin = Admin.query.filter_by(email=email).first()
 
-#     if not email or not admin_password:
-#         return jsonify({"message": "All fields are required"})
-#     if admin:
+    if not email or not admin_password:
+        return jsonify({"message": "All fields are required"})
+    if admin:
         
-#         def password():
-#             u_password = admin_password
+        def password():
+            u_password = admin_password
         
-#             password_hashed = admin.password
-#             validate=check_password_hash(password_hashed, u_password)
-#             if validate:
-#                 access_token = create_access_token(identity=admin.id) #to make JSON Web Tokens for authentication
-#                 refresh_token = create_refresh_token(identity=admin.id) #to make JSON Web Tokens to refresh authentication
-#                 return {"access_token":f"{access_token}",
-#                         "refresh_token":f"{refresh_token}",
-#                         "admin_type":admin.admin_type}
-#             else:
-#                 return "Provided an incorrect password"
-#         return password()
-#     else:
-#         return "Email does not exist"   
+            password_hashed = admin.password
+            validate=check_password_hash(password_hashed, u_password)
+            if validate:
+                access_token = create_access_token(identity=admin.id) #to make JSON Web Tokens for authentication
+                refresh_token = create_refresh_token(identity=admin.id) #to make JSON Web Tokens to refresh authentication
+                return {"access_token":f"{access_token}",
+                        "refresh_token":f"{refresh_token}",
+                        "admin_type":admin.admin_type}
+            else:
+                return "Provided an incorrect password"
+        return password()
+    else:
+        return "Email does not exist"   
         
 
         
@@ -132,8 +132,8 @@ def create_Admin():
     # Admin type validation
     if not admin_type:
         return jsonify({"Message":"Admin type is required, 400"})
-    elif Admin.query.filter_by(email=admin_email).first():
-        return jsonify({"Message":"Can't have two admins with the same type"})    
+    elif Admin.query.filter_by(admin_type=admin_type).first():
+        return jsonify({"Message":"Can't have two admins with the same privileges 100%"})    
     
     #company code validation
     if not admin_company_code:
@@ -148,17 +148,20 @@ def create_Admin():
 # model-Ids settings
     number = random.randint(1,3)  
     admin_Id = "A"+str(number)
+    finaL_admin_Id = "A"+str(number)
     existing_admin_id=Admin.query.filter_by(A_Id=admin_Id).first()
     if existing_admin_id:
+            number = random.randint(1,3)
             admin_Id = "A"+str(number)
-    finaL_admin_Id = admin_Id
+            finaL_admin_Id = admin_Id
     
 # Id settings, for auto increment
-    N_id
+    N_id = 0
     max_value = Admin.query.with_entities(Admin.id).order_by(Admin.id.desc()).first()
     if max_value:
-        newId = int(max_value)
-        N_id = newId + 1
+        max_number = max_value[0]
+        increment = 1
+        N_id = increment + max_number
     else:
         N_id = 1
     

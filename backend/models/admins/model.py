@@ -14,22 +14,22 @@ class Admin(db.Model):
     age: int
     gender: str
     email: str
-    Contact: int
-    Address: str
+    contact: int
+    address: str
     password: str
     company_code: str
     Reg_at: str
     updated_at: str
 
-    id = db.Column(db.Integer, primary_key=True)
-    A_Id = db.Column(db.String(2), unique=True, nullable=False)
+    id = db.Column(db.Integer, unique=True, nullable=False)
+    A_Id = db.Column(db.String(2), primary_key=True)
     F_name= db.Column(db.String(20), nullable=False)
     L_name= db.Column(db.String(20), nullable=False)
     age= db.Column(db.Integer, nullable=False)
     gender= db.Column(db.String(6), nullable=False)
     email= db.Column(db.String(50), nullable=False, unique = True)
-    Contact= db.Column(db.String(10), nullable=False, unique = True)
-    Address= db.Column(db.String(100), nullable=False)
+    contact= db.Column(db.String(10), nullable=False, unique = True)
+    address= db.Column(db.String(100), nullable=False)
     password= db.Column(db.String(30), unique = True, nullable=False)
     company_code = db.Column(db.String(8), unique=True, nullable=False)
     admin_type= db.Column(db.String(15), unique = True, nullable = False, default = "Manager")
@@ -38,46 +38,46 @@ class Admin(db.Model):
     updated_at = db.Column(db.String(30), nullable=True, onupdate=datetime.now())
 
     # relationships
-    user_roles = db.relationship("UserRole", backref="admin")
-    sub_fields = db.relationship("Sub_Fields", backref="admin")
-    company_profiles = db.relationship("CompanyProfile", backref="admin")
-    internships = db.relationship("Internship", backref="admin")
-    question_categories = db.relationship("InterviewQuestionCategory", backref="admin")
-    interview_questions = db.relationship("InterviewQuestion", backref="admin")
-    tips = db.relationship("Tip", backref="admin")
-    reviews = db.relationship("Review", backref="admin")
-    frequently_asked_questions = db.backref("FAQ", backref="admin")
-    messages = db.relationship("Message", backref="admin")
+    user_roles = db.relationship("UserRole", backref="admin", lazy="dynamic")
+    sub_fields = db.relationship("Sub_Field", backref="admin", lazy="dynamic")
+    company_profiles = db.relationship("CompanyProfile", backref="admin", lazy="dynamic")
+    internships = db.relationship("InternShip", backref="admin", lazy="dynamic")
+    question_categories = db.relationship("InterviewQuestionCategory", backref="admin", lazy="dynamic")
+    interview_questions = db.relationship("InterviewQuestion", backref="admin", lazy="dynamic")
+    tips = db.relationship("Tip", backref="admin", lazy="dynamic")
+    reviews = db.relationship("Review", backref="admin", lazy="dynamic")
+    frequently_asked_questions = db.backref("FAQ", backref="admin", lazy="dynamic")
+    messages = db.relationship("Message", backref="admin", lazy="dynamic")
 
-    def __init__(self, 
-                 A_Id, 
-                 F_name,
-                 L_name,
-                 age,
-                 gender, 
-                 email, 
-                 Contact, 
-                 Address, 
-                 password,
-                 company_code,
-                 admin_type,
-                 profile_image,
-                 Reg_at,
-                 updated_at ):
-        self.A_Id = A_Id 
-        self.F_name = F_name
-        self.L_name = L_name
-        self.age = age
-        self.gender =  gender
-        self.email =  email
-        self.Contact =  Contact
-        self.Address =  Address
-        self.password = password
-        self.company_code = company_code
-        self.admin_type = admin_type
-        self.profile_image = profile_image
-        self.Reg_at = Reg_at
-        self.updated_at = updated_at
+    # def __init__(self, 
+    #              A_Id, 
+    #              F_name,
+    #              L_name,
+    #              age,
+    #              gender, 
+    #              email, 
+    #              Contact, 
+    #              Address, 
+    #              password,
+    #              company_code,
+    #              admin_type,
+    #              profile_image,
+    #              Reg_at,
+    #              updated_at ):
+    #     self.A_Id = A_Id 
+    #     self.F_name = F_name
+    #     self.L_name = L_name
+    #     self.age = age
+    #     self.gender =  gender
+    #     self.email =  email
+    #     self.Contact =  Contact
+    #     self.Address =  Address
+    #     self.password = password
+    #     self.company_code = company_code
+    #     self.admin_type = admin_type
+    #     self.profile_image = profile_image
+    #     self.Reg_at = Reg_at
+    #     self.updated_at = updated_at
 
-    def __repr__(self):
-        return f"<{self.admin_type} {self.L_name} {self.F_name}>"
+    # def __repr__(self):
+    #     return f"<{self.admin_type} {self.L_name} {self.F_name}>"

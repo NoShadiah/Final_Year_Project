@@ -40,41 +40,6 @@ class CompanyProfile(db.Model):
     reg_at = db.Column(db.String(100), nullable=False, default=datetime.now()) 
     reg_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
     upd_at = db.Column(db.String(100), nullable=False, onupdate=datetime.now())
-    upd_by = db.Column(db.String(2), db.ForeignKey("admins.A_Id"), nullable=False)
+    upd_by = db.Column(db.String(2), default = "Not yet")
 
-    def __init__(self,
-                CP_Id,
-                company_contact,
-                company_name,
-                industry,
-                location,
-                website,
-                linkedIn,
-                whatsapp,
-                github,
-                bitbucket, 
-                email,
-                profile_pic,
-                reg_at,
-                reg_by,
-                upd_at):
-                
-                self.CP_Id= CP_Id
-                self.company_contact= company_contact
-                self.company_name = company_name
-                self.industry= industry
-                self.location= location
-                self.website= website
-                self.linkedIn= linkedIn
-                self.whatsapp= whatsapp
-                self.github= github
-                self.bitbucket=  bitbucket
-                self.email= email
-                self.profile_pic= profile_pic
-                self.reg_at = reg_at
-                self.reg_by = reg_by
-                self.upd_at = upd_at
-
-
-    def __repr__(self):
-            return f"<Company profile: {self.company_name} is a {self.industry}"
+    
