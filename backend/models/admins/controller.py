@@ -11,7 +11,7 @@ from flasgger import swag_from
 admins = Blueprint('admins', __name__, url_prefix='/api/v1/admins')
 
 #admin login
-@admins.route("/token", methods=["POST"])
+@admins.route("/login", methods=["POST"])
 @swag_from('../documentation/docs/admin/login.yaml')
 def login():
     email = request.json.get("email")
@@ -20,7 +20,7 @@ def login():
 
     if not email or not admin_password:
         return jsonify({"message": "All fields are required"})
-    if admin:
+    elif admin:
         
         def password():
             u_password = admin_password
@@ -28,13 +28,13 @@ def login():
             password_hashed = admin.password
             validate=check_password_hash(password_hashed, u_password)
             if validate:
-                access_token = create_access_token(identity=admin.id) #to make JSON Web Tokens for authentication
-                refresh_token = create_refresh_token(identity=admin.id) #to make JSON Web Tokens to refresh authentication
+                access_token = create_access_token(identity=admin.A_Id) #to make JSON Web Tokens for authentication
+                refresh_token = create_refresh_token(identity=admin.A_Id) #to make JSON Web Tokens to refresh authentication
                 return {"access_token":f"{access_token}",
                         "refresh_token":f"{refresh_token}",
                         "admin_type":admin.admin_type}
             else:
-                return "Provided an incorrect password"
+                return jsonify({"message":"Provided an incorrect password"})
         return password()
     else:
         return "Email does not exist"   
