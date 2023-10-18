@@ -1,2 +1,2 @@
-# showing_data_in_a_webpage
-This is an API for showing data in a webpage using react and flask
+# Skills_Coonect Web application
+This is an app designed for connecting students to internship places
