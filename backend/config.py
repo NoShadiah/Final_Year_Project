@@ -1,13 +1,19 @@
-
+# from flask_simple_crypt import SimpleCrypt
+# from app import app
 import os
 class Config:
    SQLALCHEMY_TRACK_MODIFICATIONS = False
    JWT_SECRET_KEY = "protected"
+   # cipher = SimpleCrypt()
+   # cipher.init_app(app)
+
    
 
    @staticmethod
    def init_app(app):
        pass
+   
+   
 
 class DevelopmentConfig(Config):
    DEBUG=True

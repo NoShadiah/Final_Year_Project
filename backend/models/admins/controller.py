@@ -1,6 +1,7 @@
 #register a new admin
 import random
 from flask import  jsonify, request, Blueprint
+# from models.encryption import check_password, hash_password
 from models.admins.model import Admin
 from models.db import db
 from datetime import datetime
@@ -8,68 +9,71 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import JWTManager, create_access_token, create_refresh_token, jwt_required, get_jwt_identity, unset_jwt_cookies
 from flasgger import swag_from
 
+
 admins = Blueprint('admins', __name__, url_prefix='/api/v1/admins')
 
 #admin login
 @admins.route("/login", methods=["POST"])
 @swag_from('../documentation/docs/admin/login.yaml')
 def login():
-    email = request.json.get("email")
-    admin_password = request.json.get("password")
-    admin = Admin.query.filter_by(email=email).first()
+    U_email = request.json['email']
+    admin_password = request.json['password']
 
-    if not email or not admin_password:
+    if not U_email or not admin_password:
         return jsonify({"message": "All fields are required"})
-    elif admin:
+
+    admin = Admin.query.filter_by(email=U_email).first()
+
+    if not admin:
+        return jsonify({"message": "Email does not exist"})
+    
+    hashed_pwd = admin.password
+
+    # Verify the provided password against the stored hashed password
+    validate = check_password_hash(admin.password,admin_password)
+    if validate:
         
-        def password():
-            u_password = admin_password
-        
-            password_hashed = admin.password
-            validate=check_password_hash(password_hashed, u_password)
-            if validate:
-                access_token = create_access_token(identity=admin.A_Id) #to make JSON Web Tokens for authentication
-                refresh_token = create_refresh_token(identity=admin.A_Id) #to make JSON Web Tokens to refresh authentication
-                return {"access_token":f"{access_token}",
-                        "refresh_token":f"{refresh_token}",
-                        "admin_type":admin.admin_type}
-            else:
-                return jsonify({"message":"Provided an incorrect password"})
-        return password()
+        access_token = create_access_token(identity=admin.A_Id)  # to create JWT for authentication
+        refresh_token = create_refresh_token(identity=admin.A_Id)  # to create JWT to refresh authentication
+        return {
+            "access_token": f"{access_token}",
+            "refresh_token": f"{refresh_token}",
+            "admin_type": admin.admin_type
+        }
     else:
-        return "Email does not exist"   
+        return jsonify({"message": "provided incorrect password"})  
         
 
         
     
 
-#get all admins
-# @admins.route("/all")
-# @jwt_required()
-# def alL_admins():
-#     admin_logged_in=get_jwt_identity()
-#     check_admin_details = Admin.query.filter_by(A_Id=admin_logged_in).first()
-#     adminType = check_admin_details.admin_type
-#     if adminType == "assistant":
-#         return {"message":"Sorry, you are unauthorized"}   
+# get all admins
+@admins.route("/all")
+@jwt_required()
+def alL_admins():
+    admin_logged_in=get_jwt_identity()
+    check_admin_details = Admin.query.filter_by(A_Id=admin_logged_in).first()
+    adminType = check_admin_details.admin_type
+    if adminType == "assistant":
+        return {"message":"Sorry, you are unauthorized"}   
 
-#     else:
-#         admins = Admin.query.all()
-#         response = [{
-#             "Id":admin.id,
-#             "Admin_Id":admin.A_Id,
-#             "First name":admin.F_name, 
-#             "Last name":admin.last_name,
-#             "Email":admin.email,
-#             "Contact":admin.contact,
-#             "admin type":admin.admin_type ,
-#             "Gender":admin.gender,
-#             "Address":admin.address,
-#             "Company code": admin.company_code,
-#             "Registered at":admin.registered_at,
-#             "Updated at":admin.updated_at
-#         }for admin in admins]
-#         return jsonify(response),200
+    else:
+        admins = Admin.query.all()
+        response = [{
+            "Id":admin.id,
+            "Admin_Id":admin.A_Id,
+            "First name":admin.F_name, 
+            "Last name":admin.L_name,
+            "Email":admin.email,
+            "Contact":admin.contact,
+            "admin type":admin.admin_type ,
+            "Gender":admin.gender,
+            "Address":admin.address,
+            "Company code": admin.company_code,
+            "Registered at":admin.Reg_at,
+            "Updated at":admin.updated_at
+        }for admin in admins]
+        return jsonify(response),200
 
 @admins.route('/register',methods=['POST'])
 def create_Admin():
@@ -86,6 +90,7 @@ def create_Admin():
     admin_company_code = request.json['company_code']
     admin_profile_pic = request.json['profile_pic']
     password_hash = generate_password_hash(admin_password)
+
   
 
 
@@ -143,6 +148,9 @@ def create_Admin():
     elif Admin.query.filter_by(company_code=admin_company_code).first():
        return jsonify({'Message':"Company code already exists"}),409
     
+    if not admin_profile_pic:
+        admin_profile_pic = "https://media.istockphoto.com/id/1313958250/vector/user-avatar-profile-icon-black-vector-illustration-on-transparent-background-website-or-app.jpg?s=170667a&w=0&k=20&c=jWdfqd_wjXbteDFLeMaaKwknZYyia6RHWKU3zosiinI="
+    
     
     
 # model-Ids settings
@@ -189,65 +197,66 @@ def create_Admin():
     return jsonify({
                     'Success':True,
                     'Message':f"{new_admin.F_name} you have successfully created a new Admin account",
+                    'Password check': check_password_hash(password_hash, admin_password),
                     "Exit code": "201"})
 
 
-# @admins.route('/admin/<admin_id>', methods=['GET', 'PUT', 'DELETE'])
-# def handle_Admin(admin_id):
-#     admin = Admin.query.get_or_404(admin_id)
+@admins.route('/admin/<admin_id>', methods=['GET', 'PUT', 'DELETE'])
+def handle_Admin(admin_id):
+    admin = Admin.query.get_or_404(admin_id)
 
-#     if request.method == 'GET':
-#         response = {
-#             "id":admin.id,
-#             "name": admin.F_name + admin.last_name,
-#             "admin_type":admin.admin_type,
-#             "email": admin.email,
-#             "contact": admin.contact
-#         }
-#         return {"success": True,"message":"admin details retrieved", "admin": response}
+    if request.method == 'GET':
+        response = {
+            "id":admin.id,
+            "name": admin.F_name + admin.L_name,
+            "admin_type":admin.admin_type,
+            "email": admin.email,
+            "contact": admin.contact
+        }
+        return {"success": True,"message":"admin details retrieved", "admin": response}
 
-#     elif request.method == 'PUT':
-#         data = request.get_json()
+    elif request.method == 'PUT':
+        data = request.get_json()
 
-#         if not data['first name']:
-#             return jsonify({"message":"Your name is required"})
+        if not data['first name']:
+            return jsonify({"message":"Your name is required"})
 
-#         if not data['last name']:
-#             return jsonify({"message":"Your name is required"})
+        if not data['last name']:
+            return jsonify({"message":"Your name is required"})
         
-#         if not data['email']:
-#             return jsonify({"message":"Your email address is required"})
+        if not data['email']:
+            return jsonify({"message":"Your email address is required"})
         
-#         if not data['contact']:
-#             return jsonify({"message":"Your contact is required"})
+        if not data['contact']:
+            return jsonify({"message":"Your contact is required"})
         
-#         if not data['password'] or len(data['password'])<6:
-#             return jsonify({"message":"Your password is required and must be greater than 6 characters"})
+        if not data['password'] or len(data['password'])<6:
+            return jsonify({"message":"Your password is required and must be greater than 6 characters"})
         
-#         admin.F_name = data['first name']
-#         admin.last_name = data['last name']
-#         admin.email = data['email']
-#         admin.contact = data['contact']
-#         admin.password = generate_password_hash(data['password'])
-#         # admin.updated_at = datetime.now()
-#         db.session.add(admin)
-#         db.session.commit()
-#         return {"message": f"admin details of {admin.F_name} updated successfully"}
+        admin.F_name = data['first name']
+        admin.L_name = data['last name']
+        admin.email = data['email']
+        admin.contact = data['contact']
+        admin.password = generate_password_hash(data['password'])
+        admin.updated_at = datetime.now()
+        db.session.add(admin)
+        db.session.commit()
+        return {"message": f"admin details of {admin.F_name} updated successfully"}
 
-#     elif request.method == 'DELETE':
-#         if admin is None:
-#             return{"message":"admin identity not found", "status code":"404"}
-#         else:
-#             db.session.delete(admin)
-#             db.session.commit()
-#             return {"message": f"admin {admin.F_name} successfully deleted."}   
+    elif request.method == 'DELETE':
+        if admin is None:
+            return{"message":"admin identity not found", "status code":"404"}
+        else:
+            db.session.delete(admin)
+            db.session.commit()
+            return {"message": f"admin {admin.F_name} successfully deleted."}   
   
-# # logging out a admin
-# # unset_jwt_cookies function which deletes the cookies containing the access token for the admin
-# @admins.route("/logout", methods=["POST"])
-# def logout():
-#     response = jsonify({"message": "logout successful"})
-#     unset_jwt_cookies(response)
-#     return response
+# logging out a admin
+# unset_jwt_cookies function which deletes the cookies containing the access token for the admin
+@admins.route("/logout", methods=["POST"])
+def logout():
+    response = jsonify({"message": "logout successful"})
+    unset_jwt_cookies(response)
+    return response
 
 

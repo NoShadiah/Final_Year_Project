@@ -29,9 +29,10 @@ def create_app(config_name):
     Swagger(app, config=swagger_config, template=template)
 
     from models.admins.controller import admins
-    # from models.users.controller import users
+    from models.users.controller import users
 
     #registering blueprints    
     app.register_blueprint(admins)
+    app.register_blueprint(users)
     
     return app

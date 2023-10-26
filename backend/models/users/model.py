@@ -10,7 +10,7 @@ class User(db.Model):
   U_Id: str
   F_name: str
   L_name: str
-  age: int
+  # age: int
   gender: str
   email: str
   contact: int
@@ -23,14 +23,14 @@ class User(db.Model):
   F_name = db.Column(db.String(100),nullable=False)
   L_name = db.Column(db.String(100),nullable=False)
   gender = db.Column(db.String(6), nullable=False)
-  age = db.Column(db.Integer, nullable=False)
+  # age = db.Column(db.Integer, nullable=False)
   email = db.Column(db.String(50), nullable=False, unique=True)  
   contact = db.Column(db.String(200), nullable=False, unique=True)
   address = db.Column(db.String(200), nullable=False)
   user_type = db.Column(db.String(10),default="student")
-  password = db.Column(db.String(20), unique=True, nullable=False)
-  registered_at = db.Column(db.String(200),nullable=True, default=datetime.now(), unique=True)
-  updated_at = db.Column(db.String(200),nullable=True, onupdate=datetime.now(), unique=True)
+  password = db.Column(db.Text, unique=True, nullable=False)
+  registered_at = db.Column(db.String(200),nullable=True, default=datetime.now())
+  updated_at = db.Column(db.String(200),nullable=True, onupdate=datetime.now())
   
   company_profiles = db.relationship("CompanyProfile",backref="user", lazy="dynamic")
   student_profiles = db.relationship("StudentProfile",backref="user", lazy="dynamic")

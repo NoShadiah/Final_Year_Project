@@ -18,7 +18,7 @@ class Admin(db.Model):
     address: str
     password: str
     company_code: str
-    Reg_at: str
+    reg_at: str
     updated_at: str
 
     id = db.Column(db.Integer, unique=True, nullable=False)
@@ -30,11 +30,11 @@ class Admin(db.Model):
     email= db.Column(db.String(50), nullable=False, unique = True)
     contact= db.Column(db.String(10), nullable=False, unique = True)
     address= db.Column(db.String(100), nullable=False)
-    password= db.Column(db.String(30), unique = True, nullable=False)
+    password= db.Column(db.Text, unique = True, nullable=False)
     company_code = db.Column(db.String(8), unique=True, nullable=False)
     admin_type= db.Column(db.String(15), unique = True, nullable = False, default = "Manager")
-    profile_image= db.Column(db.String(200), nullable = False, default = "https://media.istockphoto.com/id/1313958250/vector/user-avatar-profile-icon-black-vector-illustration-on-transparent-background-website-or-app.jpg?s=170667a&w=0&k=20&c=jWdfqd_wjXbteDFLeMaaKwknZYyia6RHWKU3zosiinI=")
-    Reg_at = db.Column(db.String(30), nullable=False, default=datetime.now())
+    profile_image= db.Column(db.Text, nullable = False)
+    reg_at = db.Column(db.String(30), nullable=False, default=datetime.now())
     updated_at = db.Column(db.String(30), nullable=True, onupdate=datetime.now())
 
     # relationships
@@ -62,7 +62,7 @@ class Admin(db.Model):
     #              company_code,
     #              admin_type,
     #              profile_image,
-    #              Reg_at,
+    #              reg_at,
     #              updated_at ):
     #     self.A_Id = A_Id 
     #     self.F_name = F_name
@@ -76,7 +76,7 @@ class Admin(db.Model):
     #     self.company_code = company_code
     #     self.admin_type = admin_type
     #     self.profile_image = profile_image
-    #     self.Reg_at = Reg_at
+    #     self.reg_at = reg_at
     #     self.updated_at = updated_at
 
     # def __repr__(self):
