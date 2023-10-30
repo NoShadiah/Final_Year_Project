@@ -26,9 +26,10 @@
     min-height: 100vh;
     width: 100%;
     /* background-color: rgb(75, 73, 73); */
-    /* background: url("./ankara6.jpg") no-repeat; */
+    background: url("https://c0.wallpaperflare.com/preview/847/634/542/black-business-camera-designer.jpg");
     background-position: center;
-    background-size: 100%;
+    background-size: cover;
+   
     animation: animateBg 5d linear infinite;
 }
 
@@ -44,7 +45,7 @@
     width: 400px;
     height: 500px;
     background: rgba(0, 166, 255, 0.16);
-    border: 3px solid rgb(0, 0, 0);
+    border: 3px solid rgb(114, 201, 236);
     border-radius: 20px;
     backdrop-filter:  blur(5px) brightness(80%);
      display: flex;

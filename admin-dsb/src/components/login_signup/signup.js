@@ -1,7 +1,9 @@
 import {useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 // import APIService from "./posting";
 // Number 1
 export function UserRegister(props){
+    const navigate = useNavigate();
     const [firstname, setFirstName]=useState("");
     const [lastname, setLastName]=useState("");
     const [email, setEmail]=useState("");
@@ -98,6 +100,7 @@ export function UserRegister(props){
         setAddress('')
         setPassword('')
         setGender('')
+        Navigate("/dashboard")
       }
     
     return(

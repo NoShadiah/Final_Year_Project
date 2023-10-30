@@ -1,7 +1,9 @@
-import {useState} from "react";
+import {useState, use} from "react";
+import { useNavigate } from "react-router-dom";
 import "./styling.css";
 // Step number 1
 export function Login(){
+    const navigate = useNavigate();
     const [password, setPassword]=useState("");
     const [email, setEmail]=useState("");
     
@@ -50,9 +52,10 @@ export function Login(){
    
     const handleSubmit = (event) =>{
         event.preventDefault();
-        UserLogin()
-        setEmail("");
-        setPassword("");
+        navigate("/dashboard")
+        // UserLogin()
+        // setEmail("");
+        // setPassword("");
         // console.log("Your password is",password+"!?23%4"+email+"!&")
     }
     return(
@@ -85,20 +88,28 @@ export function Login(){
     <section className="section">
         <div class="form-box">
             <div class="form-value">
-                <form action="" onsubmit="">
+                <form onSubmit={handleSubmit}>
                     <h2>Login</h2>
                     <div class="inputbox">
                         {/* from fontawesome i will get the icons for the input labels  */}
                         <label for="email">Email: </label>
                         <i class="fas fa-envelope"></i>
-                        <input type="email" required name="email"/>
+                        <input 
+                            type='email'
+                            value={email}
+                            onChange={ChangeEmail}
+                            required name="email"/>
                         
                     </div>
                     <div class="inputbox">
                         {/*  from fontawesome i will get the icons for the input labels */}
                         <label for="password">Password:</label>
                         <i class="fas fa-lock"></i>
-                        <input type="password" required name="password"/>
+                        <input 
+                                type='password'
+                                value={password}
+                                onChange={Change} 
+                                required name="password"/>
                         
                     </div>
                     <div class="forget">
@@ -106,12 +117,12 @@ export function Login(){
                             <label for="">
                                 <input type="checkbox"/>Remeber Me 
                             </label> 
-                        <a href="forgotpassword.html">Forgot Password</a>
+                        <a href="/forgotpassword">Forgot Password</a>
                     
                     </div>
-                    <button><a href="../Dashboard/landing.html">log In</a></button>
+                    <button id="button">login</button>
                     <div class="register">
-                        <p>Don't have an account? <a href="/frontend/authentication/signup.html">Sign Up</a></p>
+                        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
                     </div>
                 </form>
             </div>
