@@ -117,7 +117,7 @@ export function Login(){
                             <label for="">
                                 <input type="checkbox"/>Remeber Me 
                             </label> 
-                        <a href="/forgotpassword">Forgot Password</a>
+                        <a href="/passwordreset">Forgot Password</a>
                     
                     </div>
                     <button id="button">login</button>

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./App.css"
 
 import { Users } from "./components/users/retrieve";
-import { UserRegister } from "./components/users/register";
+import { RegisterUser} from "./components/users/register";
 
 import { Categories } from "./components/categories/retrieve";
 import { Registercategory } from "./components/categories/register";
@@ -22,12 +22,16 @@ import { useNavigate } from "react-router-dom";
 import "./dstyling.css"
 import "./styling.css"
 import { Landing } from "./components/landing/landing";
+import { Form } from "./components/form/form";
 
 
 
 export const Dashboard = () => {
     const navigate = useNavigate();
     const [active, setActive] = useState("");
+    const logout = ()=>{
+        navigate("/login")
+    };
     
     
         
@@ -47,7 +51,7 @@ export const Dashboard = () => {
                         <span>X</span>
                     </div>
                     <div class="menu-items">
-                        <button id="btn">Dashboard</button>
+                        <button id="btn" onClick={()=>{setActive("landing")}}>Dashboard</button>
 
                         <p id="p">All users</p>
                         <div class="dropdown"> 
@@ -244,26 +248,27 @@ export const Dashboard = () => {
                             <img src="https://img.freepik.com/free-photo/group-afro-americans-working-together_1303-8983.jpg?size=626&ext=jpg&ga=GA1.2.538938599.1670853663&semt=ais" alt="" srcset=""/>
                             <div class="button">
                                 <button>Site</button>
-                                <button onClick={navigate("/login")}>Logout</button>
+                                <button onClick={()=>{logout()}}>Logout</button>
 
                             </div>                
                         </div>
                         
                     </nav>
                 <div class="content " id="content_section">
-                                <Landing/>
+                                
                         
                             <div>
                                 {/* for registering  */}
-                                {active ==="register user" && <UserRegister/>}
+                                {active ==="register user" && <RegisterUser/>}
                                 {active ==="register food category" && <Registercategory/>}
                                 {active ==="register food item" && <RegisterFoodItem/>}
                                 {active ==="register menu item" && <RegisterMenuItem/>}
                                 {active ==="Search item" && <SearchProduct/>}
                                 {active ==="register gallery item" && <RegisterGalleryItem/>}
-                                {active ==="Add settings" && <UserRegister/>}
+                                {/* {active ==="Add settings" && <UserRegister/>} */}
                             
                                 {/* for reading */}
+                                {active === "landing" && <Landing/>}
                                 {active === "all users" && <Users/> }
                                 {active === "all Food categories" && <Categories/> }
                                 {active === "all Food items" && <FoodItems/> }

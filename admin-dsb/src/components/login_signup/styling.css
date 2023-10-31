@@ -12,10 +12,10 @@
     min-height: 100vh;
     width: 100%;
     /* background-color: rgb(75, 73, 73); */
-    background: url("ankar3.jpg") no-repeat;
+    background: url("https://c0.wallpaperflare.com/preview/847/634/542/black-business-camera-designer.jpg") no-repeat;
     background-position: center;
-    background-size: contain;
-    background-repeat: repeat-x ;
+    background-size: cover;
+    /* background-repeat: repeat-x ; */
     animation: animateBg 5d linear infinite;
 }
 
@@ -23,8 +23,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    width: 100%;
+    height: 100vh;
+    max-width: 100vw;
     /* background-color: rgb(75, 73, 73); */
     background: url("https://c0.wallpaperflare.com/preview/847/634/542/black-business-camera-designer.jpg");
     background-position: center;
@@ -126,7 +126,7 @@ input:valid~label{
 }
 
 .forget a:hover{
-    text-decoration: underline;
+    text-decoration: none;
     color: blue;
 }
 
@@ -170,7 +170,7 @@ button:hover{
 }
 
 .register p a:hover{
-    text-decoration: underline;
+    text-decoration: none;
     color: blue;
 }
 
