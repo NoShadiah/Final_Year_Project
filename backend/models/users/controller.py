@@ -17,66 +17,66 @@ import smtplib
 
 users = Blueprint('users', __name__, url_prefix='/api/v1/users')
 
-# #user login
-# @users.route("/token", methods=["POST"])
+#user login
+@users.route("/token", methods=["POST"])
 # @swag_from('../documentation/docs/user/login.yaml')
-# def login():
-#     email = request.json.get("email")
-#     user_password = request.json.get("password")
-#     user = User.query.filter_by(email=email).first()
+def login():
+    email = request.json.get("email")
+    user_password = request.json.get("password")
+    user = User.query.filter_by(email=email).first()
 
-#     if not email or not user_password:
-#         return jsonify({"message": "All fields are required"})
-#     if user:
+    if not email or not user_password:
+        return jsonify({"message": "All fields are required"})
+    if user:
         
-#         def password():
-#             u_password = user_password
+        def password():
+            u_password = user_password
         
-#             password_hashed = user.password
-#             validate=check_password_hash(password_hashed, u_password)
-#             if validate:
-#                 access_token = create_access_token(identity=user.id) #to make JSON Web Tokens for authentication
-#                 refresh_token = create_refresh_token(identity=user.id) #to make JSON Web Tokens to refresh authentication
-#                 return {"access_token":f"{access_token}",
-#                         "refresh_token":f"{refresh_token}",
-#                         "user_type":user.user_type}
-#             else:
-#                 return "Provided an incorrect password"
-#         return password()
-#     else:
-#         return "Email does not exist"   
+            password_hashed = user.password
+            validate=check_password_hash(password_hashed, u_password)
+            if validate:
+                access_token = create_access_token(identity=user.id) #to make JSON Web Tokens for authentication
+                refresh_token = create_refresh_token(identity=user.id) #to make JSON Web Tokens to refresh authentication
+                return {"access_token":f"{access_token}",
+                        "refresh_token":f"{refresh_token}",
+                        "user_type":user.user_type}
+            else:
+                return jsonify({"Mesage":"Provided an incorrect password"})
+        return password()
+    else:
+        return jsonify({"Message":"Email does not exist"})   
         
 
         
     
 
-# #get all users
-# @users.route("/all")
-# @jwt_required()
-# def all_users():
-#     user_logged_in=get_jwt_identity()
-#     check_user_details = User.query.filter_by(id=user_logged_in).first()
-#     userType = check_user_details.user_type
-#     if userType == "client" or userType == "customer":
-#         return {"message":"Sorry but access denied, you are unauthorized"}
+#get all users
+@users.route("/all")
+@jwt_required()
+def all_users():
+    user_logged_in=get_jwt_identity()
+    check_user_details = User.query.filter_by(id=user_logged_in).first()
+    userType = check_user_details.user_type
+    if userType == "client" or userType == "customer":
+        return {"message":"Sorry but access denied, you are unauthorized"}
     
 
-#     else:
-#         users = User.query.all()
-#         response = [{
-#             "Id":user.id,
-#             "First name":user.F_name, 
-#             "Last name":user.L_name,
-#             "Email":user.email,
-#             "Contact":user.contact,
-#             "User type":user.user_type ,
-#             "Gender":user.gender,
-#             "Address":user.address,
-#             "Registered at":user.registered_at,
-#             "Updated at":user.updated_at
-#         }for user in users]
-#         return jsonify(
-#                 response),200
+    else:
+        users = User.query.all()
+        response = [{
+            "Id":user.U_Id,
+            "First name":user.F_name, 
+            "Last name":user.L_name,
+            "Email":user.email,
+            "Contact":user.contact,
+            "User type":user.user_type ,
+            "Gender":user.gender,
+            "Address":user.address,
+            "Registered at":user.registered_at,
+            "Updated at":user.updated_at
+        }for user in users]
+        return jsonify(
+                response),200
     
 
 
@@ -93,7 +93,6 @@ def create_user():
     U_verification_code = request.json['code']
     password_hash = generate_password_hash(user_password)
   
-
 
     # validations
     #getting the user a data
@@ -142,9 +141,9 @@ def create_user():
 
         message = f"Nice to have you here {user_fname}. Take a step further to verify y0ur email address. \n Use the this verification code {verification_code}"
 
-        key = 'jyod ifxo obvh wopu'
+        key = 'ecap kytg hoti xoki'
 
-        email_sender = 'nabawangashadiah20@gmail.com'
+        email_sender = 'skillsconnect.interns@gmail.com'
         email_key = key
 
         email_receiver = user_email
@@ -174,15 +173,6 @@ def create_user():
 
 
         return jsonify({"message": f"A six digit verification code has been sent to {user_email}, it is required for \n your successfull registration with Skills connect"})
-    
-    
-        
-    
-    
-
-        
-    
-    
     
     # model-Ids settings
     number = random.randint(1,1000000)  

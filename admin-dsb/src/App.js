@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 // import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 import {Route, Navigate, Routes} from "react-router-dom";
-import "./App.css";
+// import "./App.css";
 import { Dashboard } from "./dashboard";
-import { Menu } from "./menu";
 import { Login } from "./components/login_signup/login";
 import {SignUp} from "./components/login_signup/signup"
 import { Navbar } from "./Layout/layout";

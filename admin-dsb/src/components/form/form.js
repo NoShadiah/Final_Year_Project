@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./form.css";
+// import "./form.css";
 
 // export function Form(){
 //     const fields = [];
@@ -38,6 +38,8 @@ import "./form.css";
 
 export function Form({dictionaries, endpoint}){
     const [formData, setFormData] = useState({});
+    const [title, setTilte] = useState("")
+    // const [endpoint, se]
 
     const handleChange = (e, fieldname) => {
       setFormData({ ...formData, [fieldname]: e.target.value });
@@ -65,29 +67,39 @@ export function Form({dictionaries, endpoint}){
             console.error('Error posting data:', error);
           });
       }
+      setTilte("");
+      setFormData([]);
+      
     };
   
     useEffect(() => {
       // Optionally, you can perform other actions when the component mounts
       // or when the dictionaries or endpoint change.
-    }, [dictionaries, endpoint]);
+    }, [dictionaries, endpoint, title]);
   
     return (
+
       <form onSubmit={handleSubmit}>
+        <h1>Enter {title} details</h1>
+        <div id="formdivs">
         {
-            dictionaries?.map((dict, index) => (
-          <div key={index}>
+            dictionaries?.map(dict => (
+          <div className="inputbox">
             <label for={dict.fieldname}>{dict.fieldname}</label>
             <input
               type={dict.datatype}
-            //   id={dict.fieldname}
+              id={dict.fieldname}
               name={dict.fieldname}
-            //   value={formData[dict.fieldname] || ''}
+              value={formData[dict.fieldname] || ''}
               onChange={(e) => handleChange(e, dict.fieldname)}
             />
           </div>
-        ))}
-        <button type="submit">Submit</button>
+        )
+      )
+    }
+        </div>
+        
+        <button id="button">Submit</button>
       </form>
     );
   }

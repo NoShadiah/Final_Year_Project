@@ -2,19 +2,10 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./App.css"
 
-import { Users } from "./components/users/retrieve";
+import { Users } from "./components/UserRoles/retrieve";
 import { RegisterUser} from "./components/users/register";
-
-import { Categories } from "./components/categories/retrieve";
-import { Registercategory } from "./components/categories/register";
-import { Gallery } from "./components/gallery/retrieve";
-import { RegisterGalleryItem } from "./components/gallery/register";
-import { RegisterFoodItem } from "./components/food_items/register";
-import { FoodItems } from "./components/food_items/retrieve";
-import { RegisterMenuItem } from "./components/menu/register";
-import { SearchProduct } from "./components/menu/search";
-import { MenuItems } from "./components/menu/retrieve";
-import { Orders } from "./components/orders/retrieve";
+import { RegisterFOS} from "./components/FOS/register";
+// import { RegisterFOS } from "./components/FOS/register";
 
 import { useNavigate } from "react-router-dom";
 
@@ -22,13 +13,13 @@ import { useNavigate } from "react-router-dom";
 import "./dstyling.css"
 import "./styling.css"
 import { Landing } from "./components/landing/landing";
-import { Form } from "./components/form/form";
+import { SignUp } from "./components/login_signup/signup";
 
 
 
 export const Dashboard = () => {
     const navigate = useNavigate();
-    const [active, setActive] = useState("");
+    const [active, setActive] = useState("landing");
     const logout = ()=>{
         navigate("/login")
     };
@@ -57,7 +48,7 @@ export const Dashboard = () => {
                         <div class="dropdown"> 
                             <p className="dropbtn">Users</p>
                             <div className="dropdown-content">
-                                <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
+                                <button className="btn" onClick={()=>setActive("register user")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>Students</button>
                                 <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
@@ -69,7 +60,7 @@ export const Dashboard = () => {
                         <div class="dropdown"> 
                             <p className="dropbtn">Fields of study</p>
                             <div className="dropdown-content">
-                                <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
+                                <button className="btn" onClick={()=>setActive("register FOS")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>Students</button>
                                 <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
@@ -257,26 +248,15 @@ export const Dashboard = () => {
                 <div class="content " id="content_section">
                                 
                         
-                            <div>
+
                                 {/* for registering  */}
-                                {active ==="register user" && <RegisterUser/>}
-                                {active ==="register food category" && <Registercategory/>}
-                                {active ==="register food item" && <RegisterFoodItem/>}
-                                {active ==="register menu item" && <RegisterMenuItem/>}
-                                {active ==="Search item" && <SearchProduct/>}
-                                {active ==="register gallery item" && <RegisterGalleryItem/>}
-                                {/* {active ==="Add settings" && <UserRegister/>} */}
+                                {active === "register user" && <RegisterUser/>}
+                                {active === "register FOS" && <RegisterFOS/>}
                             
                                 {/* for reading */}
                                 {active === "landing" && <Landing/>}
                                 {active === "all users" && <Users/> }
-                                {active === "all Food categories" && <Categories/> }
-                                {active === "all Food items" && <FoodItems/> }
-                                {active === "all Menu" && <MenuItems/> }
-                                {active === "all orders" && <Orders/> }
-                                {active === "all gallery items" && <Gallery/> }
-                                {active === "all settings" && <Users/> }
-                            </div>
+                                
                         </div>
 
                     

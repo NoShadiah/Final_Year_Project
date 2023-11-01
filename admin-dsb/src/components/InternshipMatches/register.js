@@ -104,7 +104,7 @@ export function RegisterUser(props){
     
     return(
         <div id='Regsection'>
-            <div class="RegUform-box">
+            <div class="Regform-box">
         
                 <div class="form-value">
             

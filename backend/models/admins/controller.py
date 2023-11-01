@@ -78,8 +78,8 @@ def alL_admins():
 @admins.route('/register',methods=['POST'])
 def create_Admin():
     
-    admin_fname =request.json['firstname']
-    admin_lname = request.json['lastname']
+    admin_fname =request.json['f_name']
+    admin_lname = request.json['l_name']
     admin_age = request.json['age']
     admin_gender = request.json['gender']
     admin_email = request.json['email']

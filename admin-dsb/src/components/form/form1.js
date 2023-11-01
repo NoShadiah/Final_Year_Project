@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import "./styling.css"
+import "./form1.css";
+
 // import APIService from "./posting";
 // Number 1
+
 export function SignUp(){
     const navigate = useNavigate();
     const [firstname, setFirstName]=useState("");
@@ -180,9 +182,10 @@ export function SignUp(){
         
         <div class="form-value">
             
-            <form onSubmit={handleSubmit()} >
+            <form onSubmit={handleSubmit()}>
                 <h2>Sign Up</h2>
-                <div id="signupform">
+
+                .                
                 <div class="inputbox">
                     {/* <!-- from fontawesome i will get the icons for the input labels --> */}
                     <label for="email">Full name: </label>
@@ -211,9 +214,6 @@ export function SignUp(){
                     <input type="password" required name="password"/>
                     
                 </div>
-                </div>
-                
-                
                  {/* <div class="forget">
                    
                         <label for="">

@@ -18,7 +18,7 @@ main #sidebar .menu-items .dropdown .dropbtn {
   main #sidebar .menu-items .dropdown .dropdown-content {
     display: none;
     position: absolute;
-    background-color: rgb(0, 221, 255);
+    background-color: #0077b6;
     min-width: 100vw;
     max-height: 100vh;
     /* box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2); */
@@ -27,7 +27,7 @@ main #sidebar .menu-items .dropdown .dropbtn {
   
   /* Links inside the dropdown */
   main #sidebar .menu-items .dropdown .dropdown-content .btn {
-    color: grey;
+    color: rgb(187, 186, 186);
     background-color: transparent;
     margin-left: 2%;
     /* margin-top: 2%; */
