@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
-import "./App.css"
+// import "./App.css"
 
 import { Users } from "./components/UserRoles/retrieve";
 import { RegisterUser} from "./components/users/register";
@@ -14,6 +14,7 @@ import "./dstyling.css"
 import "./styling.css"
 import { Landing } from "./components/landing/landing";
 import { SignUp } from "./components/login_signup/signup";
+import { RegisterApplication } from "./components/Applications/register";
 
 
 
@@ -98,7 +99,7 @@ export const Dashboard = () => {
                         <div class="dropdown"> 
                             <p className="dropbtn">Applications</p>
                             <div className="dropdown-content">
-                                <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
+                                <button className="btn" onClick={()=>setActive("register application")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>Students</button>
                                 <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
@@ -252,6 +253,7 @@ export const Dashboard = () => {
                                 {/* for registering  */}
                                 {active === "register user" && <RegisterUser/>}
                                 {active === "register FOS" && <RegisterFOS/>}
+                                {active === "register application" && <RegisterApplication/>}
                             
                                 {/* for reading */}
                                 {active === "landing" && <Landing/>}

@@ -9,10 +9,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    max-height: 100vh;
     width: 100%;
+    overflow-y: hidden;
     /* background-color: rgb(75, 73, 73); */
-    background: url("https://c0.wallpaperflare.com/preview/847/634/542/black-business-camera-designer.jpg") no-repeat;
+    background: url("https://cdn.shopify.com/s/files/1/2710/8782/files/wps_doc_4_5a2b4c70-4d86-4012-af26-ffeaa66f9d7b.jpg?v=1686226802") no-repeat;
     background-position: center;
     background-size: cover;
     /* background-repeat: repeat-x ; */
@@ -20,11 +21,11 @@
 }
 
 
-.Regform-box{
+.RegUform-box{
     position: relative;
     background-color: aliceblue;
     width: 70%;
-    height: 500px;
+    max-height: 100vh;
     background: rgba(0, 166, 255, 0.16);
     border: 3px solid rgb(114, 201, 236);
     border-radius: 20px;
@@ -36,7 +37,7 @@
 
 #formdivs{
     display: grid;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 2fr 2fr 2fr;
 }
 
 h2,h1{

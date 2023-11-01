@@ -94,7 +94,7 @@ span{
 
 #navbar{
     
-    background: #0077b6;
+    background: rgba(0, 191, 255, 0.993);
     max-width: 100vw;
     display: grid;
     grid-template-columns: 2fr 3fr;

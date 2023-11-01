@@ -3,7 +3,23 @@ import { Form } from "../form/form";
 import "./reg_styling.css"
 
 
-export function RegisterUser(props){
+export function RegisterApplication(props){
+
+    const dictionaries = [
+        { fieldname: 'Cover letter', datatype: 'file' },
+        { fieldname: 'Introductory Letter', datatype: 'file' },
+        { fieldname: 'Curriculum vitae', datatype: 'filel' },
+        { fieldname: 'Applivation status', datatype: 'text' },
+        
+        // Add more dictionaries as needed
+      ];
+
+    const endpoint = "http://localhost:5000/api/v1/applications/register"; 
+    const title = "Application";
+
+
+
+
     const [firstname, setFirstName]=useState("");
     const [lastname, setLastName]=useState("");
     const [email, setEmail]=useState("");
@@ -104,16 +120,16 @@ export function RegisterUser(props){
     
     return(
         <div id='Regsection'>
-            <div class="Regform-box">
+            <div class="RegUform-box">
         
                 <div class="form-value">
             
                     <form onSubmit={handleSubmit}>
-                        <h1>Enter User Details</h1>
+                        <h1>Enter Application Details</h1>
 
                         <div id="formdivs">
                             <div className="inputbox">
-                                <label>First name: </label>
+                                <label>Internship: </label>
                                 <input 
                                 type='text'
                                 value={firstname}
@@ -122,64 +138,42 @@ export function RegisterUser(props){
                                 />
                             </div>
                             <div className="inputbox">
-                                <label>Last name: </label>
+                                <label>Cover letter: </label>
                                 <input 
-                                type='text'
+                                type='file'
                                 value={lastname}
                                 onChange={ChangeLastName}
                                 required
+                                accept=".pdf"
                                 />
                             </div>
                             <div className="inputbox">
-                                <label>Enter email: </label>
+                                <label>Introductory letter: </label>
                                 <input 
-                                type='text'
+                                type='file'
                                 value={email}
                                 onChange={ChangeEmail}
-                                required/>
+                                required
+                                accept=".pdf"/>
                                 
                             </div>
                             <div className="inputbox">
-                                <label>Enter your contact: </label>
+                                <label>Curriculum vitae: </label>
                                 <input 
-                                type='text'
+                                type='file'
                                 value={contact}
                                 onChange={ChangeContact}
-                                required/>
+                                required
+                                accept=".pdf"/>
                             </div>
                             <div className="inputbox">
-                                <label>Address: </label>
+                                <label>Application status: </label>
                                 <input 
                                 type='text'
                                 value={address}
                                 onChange={ChangeAddress}
                                 required/>
                             </div>
-                            <div className="inputbox">
-                                <label>Gender: </label>
-                                <input 
-                                type='text'
-                                value={gender}
-                                onChange={ChangeGender}
-                                required/>
-                            </div>
-                            <div className="inputbox">
-                                <label>Password: </label>
-                                <input 
-                                type='password'
-                                value={password}
-                                onChange={ChangePassword}
-                                required/>
-                            </div>
-                            <div className="inputbox">
-                                <label>Confirm Password: </label>
-                                <input 
-                                type='password'
-                                value={password}
-                                onChange={ChangePassword}
-                                required/>
-                            </div>
-
                         </div>
                         
                             
@@ -192,6 +186,10 @@ export function RegisterUser(props){
     </div>
     )
 }
+
+
+
+
 
 
 

@@ -36,9 +36,9 @@ import { useState, useEffect } from "react";
 // }
 
 
-export function Form({dictionaries, endpoint}){
+export function Form({dictionaries, endpoint, title}){
     const [formData, setFormData] = useState({});
-    const [title, setTilte] = useState("")
+    // const [title, setTilte] = useState("")
     // const [endpoint, se]
 
     const handleChange = (e, fieldname) => {
@@ -67,7 +67,7 @@ export function Form({dictionaries, endpoint}){
             console.error('Error posting data:', error);
           });
       }
-      setTilte("");
+      // setTilte("");
       setFormData([]);
       
     };

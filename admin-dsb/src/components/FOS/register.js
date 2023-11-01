@@ -11,8 +11,10 @@ export function RegisterFOS(props){
         // Add more dictionaries as needed
       ];
     
-    const endpoint = "http://localhost:5000/api/v1/users/register"; 
+    const endpoint = "http://localhost:5000/api/v1/FOS/register"; 
     const title = "Field of Study";
+
+
     const [firstname, setFirstName]=useState("");
     const [lastname, setLastName]=useState("");
     const [email, setEmail]=useState("");
@@ -113,10 +115,10 @@ export function RegisterFOS(props){
     
     return(
         <div id='Regsection'>
-            <div class="Regform-box">
+            <div class="RegUform-box">
         
                 <div class="form-value">
-                    <Form dictionaries={dictionaries} endpoint={endpoint}/>
+                    <Form dictionaries={dictionaries} endpoint={endpoint} title={title}/>
             
                     {/* <form onSubmit={handleSubmit}>
                         <h1>Enter User Details</h1>

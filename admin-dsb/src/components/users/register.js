@@ -4,6 +4,27 @@ import "./reg_styling.css"
 
 
 export function RegisterUser(props){
+
+    const dictionaries = [
+        { fieldname: 'First-name', datatype: 'text' },
+        { fieldname: 'Last-name', datatype: 'text' },
+        { fieldname: 'Email', datatype: 'email' },
+        { fieldname: 'contact', datatype: 'tel' },
+        { fieldname: 'Usertype', datatype: 'text' },
+        { fieldname: 'Address', datatype: 'text' },
+        { fieldname: 'Gender', datatype: 'text' },
+        { fieldname: 'Password', datatype: 'password' },
+        { fieldname: 'Confirm password', datatype: 'password' },
+        {fieldname:"Prifile photo", datatype:"file"}
+        // Add more dictionaries as needed
+      ];
+
+    const endpoint = "http://localhost:5000/api/v1/users/register"; 
+    const title = "User";
+
+
+
+
     const [firstname, setFirstName]=useState("");
     const [lastname, setLastName]=useState("");
     const [email, setEmail]=useState("");
@@ -108,7 +129,7 @@ export function RegisterUser(props){
         
                 <div class="form-value">
             
-                    <form onSubmit={handleSubmit}>
+                    {/* <form onSubmit={handleSubmit}>
                         <h1>Enter User Details</h1>
 
                         <div id="formdivs">
@@ -186,7 +207,8 @@ export function RegisterUser(props){
                                 <button id="button">Submit</button>
                                 
                             
-                        </form>
+                        </form> */}
+                        <Form dictionaries={dictionaries} endpoint={endpoint} title={title}/>
                     </div>
             </div>
     </div>
