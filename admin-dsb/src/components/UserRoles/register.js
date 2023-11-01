@@ -3,7 +3,20 @@ import { Form } from "../form/form";
 import "./reg_styling.css"
 
 
-export function RegisterUser(props){
+export function RegUserRole(props){
+
+    const dictionaries = [
+        { fieldname: 'Type', datatype: 'text' },
+        { fieldname: 'Description', datatype: 'textarea' },
+        { fieldname: 'Essential', datatype: 'text' }
+      ];
+
+    const endpoint = "http://localhost:5000/api/v1/userroles/register"; 
+    const title = "Role";
+
+
+
+
     const [firstname, setFirstName]=useState("");
     const [lastname, setLastName]=useState("");
     const [email, setEmail]=useState("");
@@ -104,11 +117,11 @@ export function RegisterUser(props){
     
     return(
         <div id='Regsection'>
-            <div class="Regform-box">
+            <div class="RegUform-box">
         
                 <div class="form-value">
             
-                    <form onSubmit={handleSubmit}>
+                    {/* <form onSubmit={handleSubmit}>
                         <h1>Enter User Details</h1>
 
                         <div id="formdivs">
@@ -186,7 +199,8 @@ export function RegisterUser(props){
                                 <button id="button">Submit</button>
                                 
                             
-                        </form>
+                        </form> */}
+                        <Form dictionaries={dictionaries} endpoint={endpoint} title={title}/>
                     </div>
             </div>
     </div>

@@ -3,26 +3,24 @@ import { Form } from "../form/form";
 import "./reg_styling.css"
 
 
-export function RegInternship(props){
+export function RegStudent(props){
 
     const dictionaries = [
-        { fieldname: 'Company_Id', datatype: 'text' },
-        { fieldname: 'Title', datatype: 'text' },
-        { fieldname: 'Description', datatype: 'textarea' },
-        { fieldname: 'Requirements', datatype: 'textarea' },
-        { fieldname: 'Terms', datatype: 'textarea' },
-        { fieldname: 'Duration', datatype: 'text' },
-        { fieldname: 'Schedule', datatype: 'text' },
-        { fieldname: 'Structure', datatype: 'text' },
-        { fieldname:"Status", datatype:"text"},
-        { fieldname:"Slots available", datatype:"number"},
-        { fieldname:"Application deadline", datatype:"text"},
-        { fieldname:"Location", datatype:"text"}
+        { fieldname: 'Institution', datatype: 'text' },
+        { fieldname: 'Course', datatype: 'text' },
+        { fieldname: 'Sub-field of study', datatype: 'text' },
+        { fieldname: 'Preferences', datatype: 'textarea' },
+        { fieldname: 'Skills', datatype: 'textarea' },
+        { fieldname: 'Level of education', datatype: 'text' },
+        { fieldname: 'Period', datatype: 'text' },
+        { fieldname: 'Status', datatype: 'text' },
+        { fieldname: 'LinkedIn', datatype: 'url' },
+        {fieldname:"Prifile photo", datatype:"file", accept:'image/png, image/jpg, image/jpeg'}
         // Add more dictionaries as needed
       ];
 
-    const endpoint = "http://localhost:5000/api/v1/internships/register"; 
-    const title = "Internship";
+    const endpoint = "http://localhost:5000/api/v1/users/register"; 
+    const title = "Student";
 
 
 
@@ -126,8 +124,8 @@ export function RegInternship(props){
       }
     
     return(
-        <div id='Regsection'>
-            <div class="RegUform-box">
+        <div className='Regsection'>
+            <div class="Regform-box">
         
                 <div class="form-value">
             

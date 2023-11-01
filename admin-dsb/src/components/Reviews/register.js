@@ -3,7 +3,27 @@ import { Form } from "../form/form";
 import "./reg_styling.css"
 
 
-export function RegisterUser(props){
+export function RegReview(props){
+
+    const dictionaries = [
+        { fieldname: 'Review Text', datatype: 'text' },
+        { fieldname: 'Company name', datatype: 'text' },
+        { fieldname: 'Industry', datatype: 'text' },
+        { fieldname: 'Location', datatype: 'text' },
+        { fieldname: 'Email', datatype: 'email' },
+        { fieldname: 'Website', datatype: 'url' },
+        { fieldname: 'Linked In', datatype: 'url' },
+        { fieldname: 'Whatsapp', datatype: 'text' },
+        { fieldname: 'Twitter', datatype: 'text' },
+        { fieldname: 'Instagram', datatype: 'text' },
+        {fieldname:"Prifile photo", datatype:"file"}
+        // Add more dictionaries as needed
+      ];
+
+    const endpoint = "http://localhost:5000/api/v1/users/register"; 
+    const title = "Company";
+
+
     const [firstname, setFirstName]=useState("");
     const [lastname, setLastName]=useState("");
     const [email, setEmail]=useState("");

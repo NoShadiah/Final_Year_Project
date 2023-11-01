@@ -25,7 +25,7 @@
     background-color: aliceblue;
     width: 70%;
     height: 500px;
-    background: rgba(0, 166, 255, 0.16);
+    background: rgba(0, 166, 255, 0.416);
     border: 3px solid rgb(114, 201, 236);
     border-radius: 20px;
     backdrop-filter:  blur(5px) brightness(80%);
@@ -36,7 +36,7 @@
 
 #formdivs{
     display: grid;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 2fr 2fr 2fr;
 }
 
 h2,h1{

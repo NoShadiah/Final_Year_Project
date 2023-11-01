@@ -171,3 +171,12 @@ span{
     overflow-y: auto;
     /* z-index: 30; */
 }
+
+
+
+.inputbox #textArea{
+    width: 50%;
+    height: 50%;
+    /* margin-top: 40%; */
+
+}

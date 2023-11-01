@@ -1,15 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
-// import "./form.css";
+// import "./table.css";
 
-// export function Form(){
+// export function table(){
 //     const fields = [];
 //     fields.push(this.props.first)
 //     return(
 //         <section className="section">
-//         <div class="form-box">
-//             <div class="form-value">
-//                 <form onSubmit={()=>{navigate("/dashboard")}}>
+//         <div class="table-box">
+//             <div class="table-value">
+//                 <table onSubmit={()=>{navigate("/dashboard")}}>
 //                     <h2>Add</h2>
 //                     <p> Enter all required details to add<br></br>item</p>
 //                     <div class="inputbox">
@@ -28,7 +28,7 @@ import { useState, useEffect } from "react";
 //                         <p><a href="/">Cancel</a></p>
 //                     </div>
 
-//                 </form>
+//                 </table>
 //             </div>
 //         </div>
 //     </section>
@@ -36,25 +36,25 @@ import { useState, useEffect } from "react";
 // }
 
 
-export function Form({dictionaries, endpoint, title}){
-    const [formData, setFormData] = useState({});
+export function Table({dictionaries, endpoint, title}){
+    const [tableData, settableData] = useState({});
     // const [title, setTilte] = useState("")
     // const [endpoint, se]
 
     const handleChange = (e, fieldname) => {
-      setFormData({ ...formData, [fieldname]: e.target.value });
+      settableData({ ...tableData, [fieldname]: e.target.value });
     };
   
     const handleSubmit = (e) => {
       e.preventDefault();
-      // You can now access the form data in the `formData` object
-      console.log('Form Data:', formData);
+      // You can now access the table data in the `tableData` object
+      console.log('table Data:', tableData);
   
       // If endpoint is provided, you can make a POST request to it.
       if (endpoint) {
         fetch(endpoint, {
           method: 'POST',
-          body: JSON.stringify(formData),
+          body: JSON.stringify(tableData),
           headers: {
             'Content-Type': 'application/json',
           },
@@ -68,56 +68,39 @@ export function Form({dictionaries, endpoint, title}){
           });
       }
       // setTilte("");
-      setFormData([]);
+      settableData([]);
       
     };
   
     useEffect(() => {
-      // Optionally, you can perform other actions when the component mounts
+      // Optionally, you can pertable other actions when the component mounts
       // or when the dictionaries or endpoint change.
     }, [dictionaries, endpoint, title]);
   
     return (
-      
-      <form onSubmit={handleSubmit}>
+
+      <table onSubmit={handleSubmit}>
         <h1>Enter {title} details</h1>
-        <div id="formdivs">
+        <div id="tabledivs">
         {
             dictionaries?.map(dict => (
-              <div className="inputbox">
-              <label htmlFor={dict.fieldname}>{dict.fieldname}</label>
-              {dict.datatype === 'textarea' ? (
-                <textarea
-                  id="textArea"
-                  name={dict.fieldname}
-                  value={formData[dict.fieldname] || ''}
-                  onChange={(e) => handleChange(e, dict.fieldname)}
-                />
-              ) : dict.datatype === 'file' ? (
-                <input
-                  type="file"
-                  id={dict.fieldname}
-                  name={dict.fieldname}
-                  onChange={(e) => handleChange(e, dict.fieldname)}
-                  accept={dict.accept}
-                />
-              ) : (
-                <input
-                  type={dict.datatype}
-                  id={dict.fieldname}
-                  name={dict.fieldname}
-                  value={formData[dict.fieldname] || ''}
-                  onChange={(e) => handleChange(e, dict.fieldname)}
-                />
-              )}
-            </div>
+          <div className="inputbox">
+            <label for={dict.fieldname}>{dict.fieldname}:</label>
+            <input
+              type={dict.datatype}
+              id={dict.fieldname}
+              name={dict.fieldname}
+              value={tableData[dict.fieldname] || ''}
+              onChange={(e) => handleChange(e, dict.fieldname)} required
+            />
+          </div>
         )
       )
     }
         </div>
         
         <button id="button">Submit</button>
-      </form>
+      </table>
     );
   }
   

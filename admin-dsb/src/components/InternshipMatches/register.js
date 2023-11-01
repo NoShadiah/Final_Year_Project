@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import { Form } from "../form/form";
-import "./reg_styling.css"
+import "./Intstyling.css"
 
 
 export function RegisterUser(props){
@@ -103,7 +103,7 @@ export function RegisterUser(props){
       }
     
     return(
-        <div id='Regsection'>
+        <div id='registersection'>
             <div class="Regform-box">
         
                 <div class="form-value">

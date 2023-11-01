@@ -15,6 +15,11 @@ import "./styling.css"
 import { Landing } from "./components/landing/landing";
 import { SignUp } from "./components/login_signup/signup";
 import { RegisterApplication } from "./components/Applications/register";
+import { RegisterFAQ } from "./components/FAQ/register";
+import { RegCompany } from "./components/CompanyProfile/register";
+import { RegStudent } from "./components/StudentProfile/register";
+import { RegInternship } from "./components/Internships/register";
+import { RegUserRole } from "./components/UserRoles/register";
 
 
 
@@ -52,10 +57,10 @@ export const Dashboard = () => {
                                 <button className="btn" onClick={()=>setActive("register user")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>Students</button>
+                                <button className="btn" onClick={()=>setActive("reg student")}>Add Student</button>
                                 <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
+                                <button className="btn" onClick={()=>setActive("reg company")}>Add Company</button>
+                                
                             </div>
                         </div><br></br>
                         <div class="dropdown"> 
@@ -63,11 +68,7 @@ export const Dashboard = () => {
                             <div className="dropdown-content">
                                 <button className="btn" onClick={()=>setActive("register FOS")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>Students</button>
-                                <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
+                               
                             </div>
                         </div>
 
@@ -75,13 +76,9 @@ export const Dashboard = () => {
                         <div class="dropdown"> 
                             <p className="dropbtn">Internships</p>
                             <div className="dropdown-content">
-                                <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
+                                <button className="btn" onClick={()=>setActive("register internships")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>Students</button>
-                                <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
+                                
                             </div>
                         </div><br></br>
                         <div class="dropdown"> 
@@ -89,11 +86,7 @@ export const Dashboard = () => {
                             <div className="dropdown-content">
                                 <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>Students</button>
-                                <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
+                                
                             </div>
                         </div><br></br>
                         <div class="dropdown"> 
@@ -101,11 +94,9 @@ export const Dashboard = () => {
                             <div className="dropdown-content">
                                 <button className="btn" onClick={()=>setActive("register application")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>Students</button>
-                                <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
+                                <button className="btn" onClick={()=>setActive("all users")}>Approved</button>
+                                <button className="btn" onClick={()=>setActive("all users")}>Pending</button>
+                                <button className="btn" onClick={()=>setActive("all users")}>Rejected</button>
                             </div>
                         </div><br></br>
                         <div class="dropdown"> 
@@ -113,11 +104,8 @@ export const Dashboard = () => {
                             <div className="dropdown-content">
                                 <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>Students</button>
-                                <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
+                                
+                                
                             </div>
                         </div>
 
@@ -126,24 +114,15 @@ export const Dashboard = () => {
                             <p className="dropbtn">Qustion categories</p>
                             <div className="dropdown-content">
                                 <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>Students</button>
-                                <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
+                                <button className="btn" onClick={()=>setActive("all users")}>View all</button>
                             </div>
                         </div><br></br>
                         <div class="dropdown"> 
                             <p className="dropbtn">Questions</p>
                             <div className="dropdown-content">
-                                <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
+                                <button className="btn" onClick={()=>setActive("register users item")}>Add</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>Students</button>
-                                <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
+                                <button className="btn" onClick={()=>setActive("all users")}>Fielter by FOS</button>
                             </div>
                         </div>
 
@@ -163,7 +142,7 @@ export const Dashboard = () => {
                         <div class="dropdown"> 
                             <p className="dropbtn">FAQs</p>
                             <div className="dropdown-content">
-                                <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
+                                <button className="btn" onClick={()=>setActive("register FAQ")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>Students</button>
                                 <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
@@ -175,53 +154,35 @@ export const Dashboard = () => {
                         <div class="dropdown"> 
                             <p className="dropbtn">Reviews</p>
                             <div className="dropdown-content">
-                                <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
+                                <button className="btn" onClick={()=>setActive("register users item")}>React</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>Students</button>
-                                <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
-                            </div>
-                        </div>
-
-                        <p id="p">Advanced</p>
-                        <div class="dropdown"> 
-                            <p className="dropbtn">Settings</p>
-                            <div className="dropdown-content">
-                                <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>Students</button>
-                                <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
+                                <button className="btn" onClick={()=>setActive("all users")}>By Students</button>
+                                <button className="btn" onClick={()=>setActive("all users")}>By Companies</button>
                             </div>
                         </div><br></br>
-                        <div class="dropdown"> 
+
+                        <div className="dropdown">
+                                <p className="dropbtn">Advanced</p>
+                                <div className="dropdown-content">
+                                <div class="dropdown"> 
                             <p className="dropbtn">Profile</p>
                             <div className="dropdown-content">
                                 <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>Students</button>
-                                <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
                             </div>
                         </div><br></br>
                         <div class="dropdown"> 
                             <p className="dropbtn">User roles</p>
                             <div className="dropdown-content">
-                                <button className="btn" onClick={()=>setActive("register users item")}>Register</button> 
+                                <button className="btn" onClick={()=>setActive("reg userrole")}>Register</button> 
                                 <button className="btn" onClick={()=>setActive("all users")}>View all</button> 
-                                <button className="btn" onClick={()=>setActive("all users")}>Students</button>
-                                <button className="btn" onClick={()=>setActive("all users")}>Companies</button>
-                                {/* // <button className="btn" onClick={()=>setActive("Search item")}>Search item</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("update users")}>Update</button> <br></br>
-                                // <button className="btn" onClick={()=>setActive("delete users item")}>Delete</button>  */}
+                                
                             </div>
                         </div>
+                                </div>
+
+                        </div>
+                        
 
 
                         
@@ -254,6 +215,11 @@ export const Dashboard = () => {
                                 {active === "register user" && <RegisterUser/>}
                                 {active === "register FOS" && <RegisterFOS/>}
                                 {active === "register application" && <RegisterApplication/>}
+                                {active === "register FAQ" && <RegisterFAQ/>}
+                                {active === "reg company" && <RegCompany/>}
+                                {active === "reg student" && <RegStudent/>}
+                                {active === "register internships" && <RegInternship/>}
+                                {active === "reg userrole" && <RegUserRole/>}
                             
                                 {/* for reading */}
                                 {active === "landing" && <Landing/>}

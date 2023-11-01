@@ -8,6 +8,7 @@ import { Login } from "./components/login_signup/login";
 import {SignUp} from "./components/login_signup/signup"
 import { Navbar } from "./Layout/layout";
 import { Forgotpassword } from "./components/login_signup/forgotpassword";
+import { RegisterUser } from "./components/users/register";
 
 
 export default function App(){

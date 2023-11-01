@@ -21,7 +21,7 @@
 }
 
 
-.RegUform-box{
+.RegFform-box{
     position: relative;
     background-color: aliceblue;
     width: 70%;
@@ -35,10 +35,6 @@
      align-items: center;
 }
 
-#formdivs{
-    display: grid;
-    grid-template-columns: 2fr 2fr 2fr;
-}
 
 h2,h1{
     /* margin-top: 15%; */
@@ -86,6 +82,14 @@ input:valid~label{
     /* margin-bottom: 20%; */
 }
 
+#formdivs .inputbox #textArea{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    justify-content: space-around;
+}
+
 .inputbox i {
     position: absolute;
     right: 8px;
@@ -93,6 +97,8 @@ input:valid~label{
     font-size: 1.2em;
     top: 20px;
 }
+
+
 
 .forget{
     margin-left: 10% ;

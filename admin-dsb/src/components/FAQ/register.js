@@ -3,24 +3,16 @@ import { Form } from "../form/form";
 import "./reg_styling.css"
 
 
-export function RegisterUser(props){
+export function RegisterFAQ(props){
 
     const dictionaries = [
-        { fieldname: 'First-name', datatype: 'text' },
-        { fieldname: 'Last-name', datatype: 'text' },
-        { fieldname: 'Email', datatype: 'email' },
-        { fieldname: 'contact', datatype: 'tel' },
-        { fieldname: 'Usertype', datatype: 'text' },
-        { fieldname: 'Address', datatype: 'text' },
-        { fieldname: 'Gender', datatype: 'text' },
-        { fieldname: 'Password', datatype: 'password' },
-        { fieldname: 'Confirm password', datatype: 'password' },
-        {fieldname:"Prifile photo", datatype:"file"}
+        { fieldname: 'Qusetion', datatype: 'textarea' },
+        { fieldname: 'Resp body', datatype: 'textarea' },
         // Add more dictionaries as needed
       ];
 
-    const endpoint = "http://localhost:5000/api/v1/users/register"; 
-    const title = "User";
+    const endpoint = "http://localhost:5000/api/v1/FAQs/register"; 
+    const title = "FAQ";
 
 
 
@@ -125,7 +117,7 @@ export function RegisterUser(props){
     
     return(
         <div id='Regsection'>
-            <div class="RegUform-box">
+            <div class="RegFform-box">
         
                 <div class="form-value">
             
