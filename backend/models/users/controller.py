@@ -92,131 +92,147 @@ def create_user():
     user_address = request.json['address']
     U_verification_code = request.json['code']
     password_hash = generate_password_hash(user_password)
-  
+
+    existing_user_contact=User.query.filter_by(contact=user_contact).first()
+    codesent = 0
 
     # validations
     #getting the user a data
     if not user_fname:
         return jsonify({'Message':"First name is required"}),400
 
-    if not user_lname:
+    elif not user_lname:
         return jsonify({'Message':"Last name is required", "status code": 400}),
 
-    if not user_contact:
+    elif not user_contact:
         return jsonify({'Message':"Contact is required", "status code": 400})
     
-    if not user_password:
+    elif not user_password:
         return jsonify({'Message':"Password is required","status code": 400})
-    if not user_gender:
+    elif not user_gender:
         return {"message":"Your gender is required, either male or female", "status code": 400}
-    if  not user_user_type:
+    elif  not user_user_type:
         default = "student"
         user_user_type = default
     
     # password validation length
-    if len(user_password)<6:
+    elif len(user_password)<6:
         return jsonify({'Message':"Password must be atleast 6 characters long"})
     
     
     
     #constaints
-    if User.query.filter_by(email=user_email).first():
+    elif User.query.filter_by(email=user_email).first():
        return jsonify({'Message':"Email already exists", "status code": 400})
     
     
-    existing_user_contact=User.query.filter_by(contact=user_contact).first()
-    if existing_user_contact:
+    
+    elif existing_user_contact:
             return jsonify({'Message':"Contact already in use", "status code": 409})
+    elif not user_email:
+        return jsonify({'Message':"Please add your email", "status code": 400})
      
 # email verification
-    codesent = 0
     
-    if not user_email:
-        return jsonify({'Message':"Email is required", "status code": 400})
-    
-    if user_email and not U_verification_code:
-
-        verification_code = random.randint(100095, 353637)
-        codesent = verification_code
-
-        message = f"Nice to have you here {user_fname}. Take a step further to verify y0ur email address. \n Use the this verification code {verification_code}"
-
-        key = 'ecap kytg hoti xoki'
-
-        email_sender = 'skillsconnect.interns@gmail.com'
-        email_key = key
-
-        email_receiver = user_email
-
-        subject = 'Verify your email address'
-        # OTP = 
-
-        body = message
-
-        # creating an instance of the EmailMessage package
-        em = EmailMessage()
-        em['From'] = email_sender
-        em['To'] = email_receiver
-        em['subject'] = subject
-        em.set_content(body)
-
-        # setting a context for my mail
-        context = ssl.create_default_context()
-
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-            smtp.login(email_sender, email_key)
-            smtp.sendmail(email_sender, email_receiver, em.as_string())
-            # the as_string converts the data in the EmailMessage instage as a string
-
-            if len(U_verification_code) < 6 or U_verification_code != codesent:
-                return jsonify({"message":"Invalid code", "code": codesent})
+# ++++++++++++++++++++++++++++++++++++++++++++++ # ++++++++++++++++++++++++++++++++++++++++++++++ # ++++++++++++++++++++++++++++++++++++++++++++++
+# ++++++++++++++++++++++++++++++++++++++++++++++ # ++++++++++++++++++++++++++++++++++++++++++++++ # ++++++++++++++++++++++++++++++++++++++++++++++
+    elif codesent != 0 and U_verification_code:
+            if U_verification_code != codesent:
+                return jsonify({"message":f"Invalid code, its instead {codesent}"})
+            return codesent
 
 
-        return jsonify({"message": f"A six digit verification code has been sent to {user_email}, it is required for \n your successfull registration with Skills connect"})
-    
-    # model-Ids settings
-    number = random.randint(1,1000000)  
-    user_Id = "U"+str(number)
-    finaL_user_Id = "U"+str(number)
-    existing_user_id=User.query.filter_by(U_Id=user_Id).first()
-    if existing_user_id:
-            number = random.randint(1,3)
-            user_Id = "U"+str(number)
-            finaL_user_Id = user_Id
-    
-# Id settings, for auto increment
-    N_id = 0
-    max_value = User.query.with_entities(User.id).order_by(User.id.desc()).first()
-    if max_value:
-        max_number = max_value[0]
-        increment = 1
-        N_id = increment + max_number
+    elif user_email:
+        
+        if codesent == 0 and not U_verification_code:
+            verification_code = random.randint(100095, 353637)
+            codesent = verification_code
+
+            message = f"Nice to have you here {user_fname}. Take a step further to verify y0ur email address. \n Use the this verification code {codesent}"
+
+            key = 'ecap kytg hoti xoki'
+
+            email_sender = 'skillsconnect.interns@gmail.com'
+            email_key = key
+
+            email_receiver = user_email
+
+            subject = 'Verify your email address'
+                # OTP = 
+
+            body = message
+
+                # creating an instance of the EmailMessage package
+            em = EmailMessage()
+            em['From'] = email_sender
+            em['To'] = email_receiver
+            em['subject'] = subject
+            em.set_content(body)
+
+                # setting a context for my mail
+            context = ssl.create_default_context()
+
+            with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+                smtp.login(email_sender, email_key)
+                smtp.sendmail(email_sender, email_receiver, em.as_string())
+                # the as_string converts the data in the EmailMessage instage as a string
+            return jsonify({"message":f"A verification code will be sent to your {user_email}, in a few, check and enter code to register"})
+
     else:
-        N_id = 1
-    
+        number = random.randint(1,1000000)  
+        user_Id = "U"+str(number)
+        finaL_user_Id = "U"+str(number)
+        existing_user_id=User.query.filter_by(U_Id=user_Id).first()
+        if existing_user_id:
+                number = random.randint(1,3)
+                user_Id = "U"+str(number)
+                finaL_user_Id = user_Id
+        
+    # Id settings, for auto increment
+        N_id = 0
+        max_value = User.query.with_entities(User.id).order_by(User.id.desc()).first()
+        if max_value:
+            max_number = max_value[0]
+            increment = 1
+            N_id = increment + max_number
+        else:
+            N_id = 1
+        
 
-    #storing new user
-    new_user = User( 
-                    id = N_id,
-                    U_Id=user_Id,
-                    F_name = user_fname,
-                    L_name = user_lname,
-                    email = user_email,
-                    contact = user_contact,
-                    password=password_hash,
-                     user_type=user_user_type,
-                     gender=user_gender,
-                    address = user_address)
-    #  address = user_address,
-    
+        #storing new user
+        new_user = User( 
+                        id = N_id,
+                        U_Id=user_Id,
+                        F_name = user_fname,
+                        L_name = user_lname,
+                        email = user_email,
+                        contact = user_contact,
+                        password=password_hash,
+                        user_type=user_user_type,
+                        gender=user_gender,
+                        address = user_address)
+        #  address = user_address,
+        
 
-    #adding a new users to the database
-    db.session.add(new_user)
-    db.session.commit()
-    return jsonify({
-                    'Success':True,
-                    'Message':f"{new_user.F_name} you have successfully created an account with skills connect",
-                    }),201
+        #adding a new users to the database
+        db.session.add(new_user)
+        db.session.commit()
+        return jsonify({
+                        'Success':True,
+                        'Message':f"{new_user.F_name} you have successfully created an account with skills connect",
+                        }),201
+    
+# ++++++++++++++++++++++++++++++++++++++++++++++ # ++++++++++++++++++++++++++++++++++++++++++++++ # ++++++++++++++++++++++++++++++++++++++++++++++
+# ++++++++++++++++++++++++++++++++++++++++++++++ # ++++++++++++++++++++++++++++++++++++++++++++++ # ++++++++++++++++++++++++++++++++++++++++++++++
+    
+    # if user_email:
+
+
+    #     return jsonify({"message": f"A six digit verification code has been sent to {user_email}, it is required for \n your successfull registration with Skills connect"})
+
+        
+    # model-Ids settings
+    
 
     
 

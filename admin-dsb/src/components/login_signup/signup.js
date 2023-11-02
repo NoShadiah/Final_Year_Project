@@ -51,131 +51,46 @@ export function SignUp(){
         setPassword(e.target.value)
         console.log(password)
     }
-    // const insertUser = () =>{
-    //     APIService.InsertUser({firstname, lastname, email, contact, password, address, gender, usertype})
-    //     .then((response) => response)
-    //     .catch(error => console.log('error',error))
-    //   }
-      // update the existing user list
-//   const inserteduser = (user) =>{
-//     const new_users = [...users,user]
-//     setUsers(new_users)
-//   }
-    // function InsertUser(){
-    //    const data = {
-    //     firstname,
-    //     lastname,
-    //     email,
-    //     contact,
-    //     address,
-    //     password,
-    //     user_type:usertype,
-    //     gender
-    // }
     
 
-    //     fetch("http://localhost:5000/api/v1/users/register", {
-    //     method: "POST", // or 'PUT'
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(data),
-    //     })
-    //     .then((response) => response.json())
-    //     .then((data) => {
-    //         console.log("Success:", data);
-    //     })
-    //     .catch((error) => {
-    //         console.error("Error:", error);
-    //     });
-    // }
+    function InsertUser(){
+       const data = {
+        firstname,
+        lastname,
+        email,
+        contact,
+        address,
+        password,
+        user_type:usertype,
+        gender
+    }
+    
+
+        fetch("http://localhost:5000/api/v1/users/register", {
+        method: "POST", // or 'PUT'
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("Success:", data);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+    }
         
   
-      const handleSubmit=(event)=>{ 
-        // event.preventDefault();
-        // InsertUser()
-        // setFirstName('')
-        // setLastName('')
-        // setEmail('')
-        // setContact('')
-        // setAddress('')
-        // setPassword('')
-        // setGender('')
-        navigate("/dashboard")
+      const handleSubmit=()=>{ 
+        InsertUser()
+        navigate("/verify")
       }
     
     return(
-    //     <div id='form1'>
-    //         <h1>Enter User Details</h1>
-    //         <form onSubmit={handleSubmit}>
-    //             <div>
-    //                 <label>First name: </label>
-    //                 <input 
-    //                 type='text'
-    //                 value={firstname}
-    //                 onChange={ChangeFirstName}
-    //                 required
-    //                 />
-    //             </div>
-    //             <div>
-    //                 <label>Last name: </label>
-    //                 <input 
-    //                 type='text'
-    //                 value={lastname}
-    //                 onChange={ChangeLastName}
-    //                 required
-    //                 />
-    //             </div>
-    //             <div>
-    //                 <label>Enter email: </label>
-    //                 <input 
-    //                 type='text'
-    //                 value={email}
-    //                 onChange={ChangeEmail}
-    //                 required/>
-                    
-    //             </div>
-    //             <div>
-    //                 <label>Enter your contact: </label>
-    //                 <input 
-    //                 type='text'
-    //                 value={contact}
-    //                 onChange={ChangeContact}
-    //                 required/>
-    //             </div>
-    //             <div>
-    //                 <label>Address: </label>
-    //                 <input 
-    //                 type='text'
-    //                 value={address}
-    //                 onChange={ChangeAddress}
-    //                 required/>
-    //             </div>
-    //             <div>
-    //                 <label>Gender: </label>
-    //                 <input 
-    //                 type='text'
-    //                 value={gender}
-    //                 onChange={ChangeGender}
-    //                 required/>
-    //             </div>
-    //             <div>
-    //                 <label>Password: </label>
-    //                 <input 
-    //                 type='password'
-    //                 value={password}
-    //                 onChange={ChangePassword}
-    //                 required/>
-    //             </div>
-    //             <div>
-    //                 <button >Submit</button>
-    //                 <p>Submit form the form and hit the Signup button to access your account</p>
-    //             </div>
-    //         </form>
 
-    // </div>
-
-    <div id="section">
+    <div id="mysection">
     <div class="form-box">
         
         <div class="form-value">
@@ -183,34 +98,70 @@ export function SignUp(){
             <form onSubmit={handleSubmit()} >
                 <h2>Sign Up</h2>
                 <div id="signupform">
-                <div class="inputbox">
-                    {/* <!-- from fontawesome i will get the icons for the input labels --> */}
-                    <label for="email">Full name: </label>
-                    <i class="fas fa-person"></i>
-                    <input type="text" required name="email"/>
-                    
-                </div>
-                <div class="inputbox">
-                    {/* <!-- from fontawesome i will get the icons for the input labels --> */}
-                    <label for="email">Email: </label>
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" required name="email"/>
-                    
-                </div>
-                <div class="inputbox">
-                    {/* <!-- from fontawesome i will get the icons for the input labels --> */}
-                    <label for="password">Password:</label>
-                    <i class="fas fa-lock"></i>
-                    <input type="password" required name="password"/>
-                    
-                </div>
-                <div class="inputbox">
-                    {/* <!-- from fontawesome i will get the icons for the input labels --> */}
-                    <label for="password">Confirm Password:</label>
-                    <i class="fas fa-lock"></i>
-                    <input type="password" required name="password"/>
-                    
-                </div>
+                    <div class="inputbox">
+                        {/* <!-- from fontawesome i will get the icons for the input labels --> */}
+                        <label for="name">First name: </label>
+                        <i class="fas fa-person"></i>
+                        <input type="text" required name="name"/>
+                        
+                    </div>
+                    <div class="inputbox">
+                        {/* <!-- from fontawesome i will get the icons for the input labels --> */}
+                        <label for="name">Last name: </label>
+                        <i class="fas fa-person"></i>
+                        <input type="text" required name="name"/>
+                        
+                    </div>
+                    <div class="inputbox">
+                        {/* <!-- from fontawesome i will get the icons for the input labels --> */}
+                        <label for="email">Email: </label>
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" required name="email"/>
+                        
+                    </div>
+                    <div class="inputbox">
+                        {/* <!-- from fontawesome i will get the icons for the input labels --> */}
+                        <label for="usertype">User Type: </label>
+                        <i class="fas fa-person"></i>
+                        <input type="text" required name="usertype"/>
+                        
+                    </div>
+                    <div class="inputbox">
+                        {/* <!-- from fontawesome i will get the icons for the input labels --> */}
+                        <label for="address">Address: </label>
+                        <i class="fas fa-person"></i>
+                        <input type="text" required name="address"/>
+                        
+                    </div>
+                    <div class="inputbox">
+                        {/* <!-- from fontawesome i will get the icons for the input labels --> */}
+                        <label for="gender">Gender: </label>
+                        <i class="fas fa-person"></i>
+                        <input type="text" required name="gender"/>
+                        
+                    </div>
+                    <div class="inputbox">
+                        {/* <!-- from fontawesome i will get the icons for the input labels --> */}
+                        <label for="profile">Profile photo: </label>
+                        <i class="fas fa-person"></i>
+                        <input type="file" required name="profile"/>
+                        
+                    </div>
+                    <div class="inputbox">
+                        {/* <!-- from fontawesome i will get the icons for the input labels --> */}
+                        <label for="password">Password:</label>
+                        <i class="fas fa-lock"></i>
+                        <input type="password" required name="password"/>
+                        
+                    </div>
+                    <div class="inputbox">
+                        {/* <!-- from fontawesome i will get the icons for the input labels --> */}
+                        <label for="password">Confirm Password:</label>
+                        <i class="fas fa-lock"></i>
+                        <input type="password" required name="password"/>
+                        
+                    </div>
+                
                 </div>
                 
                 
@@ -222,7 +173,7 @@ export function SignUp(){
             
                 
                 </div>  */}
-                <button id="button">Sign Up</button>
+                <button id="button">Submit</button>
                 <div class="register">
                     <p>Already have an account? <a href="/login">Log In</a></p>
                 </div>

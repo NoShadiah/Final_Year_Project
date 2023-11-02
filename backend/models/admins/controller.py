@@ -12,40 +12,6 @@ from flasgger import swag_from
 
 admins = Blueprint('admins', __name__, url_prefix='/api/v1/admins')
 
-#admin login
-@admins.route("/login", methods=["POST"])
-@swag_from('../documentation/docs/admin/login.yaml')
-def login():
-    U_email = request.json['email']
-    admin_password = request.json['password']
-
-    if not U_email or not admin_password:
-        return jsonify({"message": "All fields are required"})
-
-    admin = Admin.query.filter_by(email=U_email).first()
-
-    if not admin:
-        return jsonify({"message": "Email does not exist"})
-    
-    hashed_pwd = admin.password
-
-    # Verify the provided password against the stored hashed password
-    validate = check_password_hash(admin.password,admin_password)
-    if validate:
-        
-        access_token = create_access_token(identity=admin.A_Id)  # to create JWT for authentication
-        refresh_token = create_refresh_token(identity=admin.A_Id)  # to create JWT to refresh authentication
-        return {
-            "access_token": f"{access_token}",
-            "refresh_token": f"{refresh_token}",
-            "admin_type": admin.admin_type
-        }
-    else:
-        return jsonify({"message": "provided incorrect password"})  
-        
-
-        
-    
 
 # get all admins
 @admins.route("/all")

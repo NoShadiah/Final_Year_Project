@@ -30,9 +30,11 @@ def create_app(config_name):
 
     from models.admins.controller import admins
     from models.users.controller import users
+    from models.auth.auth import auth
 
     #registering blueprints    
     app.register_blueprint(admins)
     app.register_blueprint(users)
+    app.register_blueprint(auth)
     
     return app

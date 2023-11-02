@@ -6,6 +6,9 @@ export function Login(){
     const navigate = useNavigate();
     const [password, setPassword]=useState("");
     const [email, setEmail]=useState("");
+    const [code, setCode]=useState("");
+    const [user_type, setUserType]=useState("");
+    const [isAdmin, setIsAdmin]= useState(false);
     
     const Change=(e)=>{
              setPassword(e.target.value)
@@ -18,6 +21,12 @@ export function Login(){
        setEmail(e.target.value)
         console.log(email)
     }
+
+    const ChangeCode=(e)=>{
+        
+        setCode(e.target.value)
+         console.log(code)
+     }
     
     function UserLogin(){
         // const [isloggedIn, setIsLoggedIn] = useState(false)
@@ -29,18 +38,36 @@ export function Login(){
             },
             body: JSON.stringify({
                 email,
-                password
+                password,
+                code
             })
         }
-        fetch('http://127.0.0.1:5000/api/v1/users/token', details)
+        fetch('http://127.0.0.1:5000/api/v1/auth/login', details)
         .then(response => response.json())
         .then((data)=>{
             console.log(data); 
             if (data.access_token){
                 // setIsLoggedIn(true);
-                localStorage.setItem('access_token', JSON.stringify(data.access_token));
-                localStorage.setItem('refresh_token', JSON.stringify(data.refresh_token));
-                localStorage.setItem('user_type', JSON.stringify(data.user_type));
+                // alert(data.message);
+                // setUserType(data.user_type);
+                if (data.user_type === "Student" || data.user_type === "student"){
+                    navigate("/signup")
+                }else if (data.user_type === "Company" || data.user_type === "company") {
+                    navigate("/passwordreset")
+                } else if (data.user_type === "Super Admin" || data.user_type === "Assistant Admin"){
+                    navigate("/dashboard")
+                };
+                localStorage.setItem('access_token', JSON(data.access_token));
+                localStorage.setItem('refresh_token', JSON(data.refresh_token));
+                localStorage.setItem('user_type', JSON(data.user_type));
+                
+                
+            }
+            else{
+                
+                    alert(data.message);
+                
+
             }
             
 
@@ -52,39 +79,15 @@ export function Login(){
    
     const handleSubmit = (event) =>{
         event.preventDefault();
-        navigate("/dashboard")
-        // UserLogin()
-        // setEmail("");
-        // setPassword("");
+        
+        
+        UserLogin()
+        setEmail("");
+        setPassword("");
+        setCode("");
         // console.log("Your password is",password+"!?23%4"+email+"!&")
     }
     return(
-    //     <div id='form1'>
-    //     <h1>Please Login to go further.</h1>
-    //     <form onSubmit={handleSubmit}>
-    //         <div>
-    //             <label>Enter email: </label>
-    //             <input 
-    //             type='email'
-    //             value={email}
-    //             onChange={ChangeEmail}/>
-    //         </div>
-    //         <div>
-    //             <label>Enter your password: </label>
-    //             <input 
-    //             type='password'
-    //             value={password}
-    //             onChange={Change}
-    //             />
-    //         </div>
-            
-    //         <div>
-    //             <button >LogIn</button>
-    //         </div>
-    //     </form>
-
-    // </div>
-
     <section className="section">
         <div class="form-box">
             <div class="form-value">
@@ -110,6 +113,17 @@ export function Login(){
                                 value={password}
                                 onChange={Change} 
                                 required name="password"/>
+                        
+                    </div>
+                    <div class="inputbox">
+                        {/*  from fontawesome i will get the icons for the input labels */}
+                        <label for="code">Company code:</label>
+                        <i class="fas fa-lock"></i>
+                        <input 
+                                type='text'
+                                value={code}
+                                onChange={ChangeCode} 
+                                name="code"/>
                         
                     </div>
                     <div class="forget">

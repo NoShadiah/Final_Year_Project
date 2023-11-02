@@ -5,7 +5,7 @@
     'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
-#section{
+#mysection{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,10 +55,24 @@
      align-items: center;
 }
 
-#section .form-box .form-vale form #signupform{
+#mysection .form-box{
+    position: relative;
+    background-color: aliceblue;
+    width: 50%;
+    height: 60%;
+    background: rgba(0, 166, 255, 0.16);
+    border: 3px solid rgb(114, 201, 236);
+    border-radius: 20px;
+    backdrop-filter:  blur(5px) brightness(80%);
+     /* display: grid;
+     grid-template-columns: 2fr; */
+}
+#mysection .form-box .form-value form #signupform{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    width:100%;
+    grid-template-columns: 3fr 3fr;
+    align-items: center;
+    width:80%;
+    margin-left: 10%;
     max-height: 100vh;
     
 }
