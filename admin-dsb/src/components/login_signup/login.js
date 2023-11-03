@@ -51,9 +51,9 @@ export function Login(){
                 // alert(data.message);
                 // setUserType(data.user_type);
                 if (data.user_type === "Student" || data.user_type === "student"){
-                    navigate("/signup")
+                    navigate("/studenthome")
                 }else if (data.user_type === "Company" || data.user_type === "company") {
-                    navigate("/passwordreset")
+                    navigate("/companyhome")
                 } else if (data.user_type === "Super Admin" || data.user_type === "Assistant Admin"){
                     navigate("/dashboard")
                 };

@@ -82,7 +82,6 @@ export function VerifyEmail(){
         });
     }
         
-  
       const handleSubmit=()=>{ 
         
       }

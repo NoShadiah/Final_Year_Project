@@ -20,6 +20,7 @@ import { RegCompany } from "./components/CompanyProfile/register";
 import { RegStudent } from "./components/StudentProfile/register";
 import { RegInternship } from "./components/Internships/register";
 import { RegUserRole } from "./components/UserRoles/register";
+import { AllUsers } from "./components/users/retrieve";
 
 
 
@@ -223,7 +224,7 @@ export const Dashboard = () => {
                             
                                 {/* for reading */}
                                 {active === "landing" && <Landing/>}
-                                {active === "all users" && <Users/> }
+                                {active === "all users" && <AllUsers/> }
                                 
                         </div>
 

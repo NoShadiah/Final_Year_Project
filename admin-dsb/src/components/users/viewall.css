@@ -1,0 +1,37 @@
+#viewalltable{
+    width: 90%;
+    max-height: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    margin-top:5%;
+    
+}
+
+#viewalltable .mylist{
+    border-radius: 20%;
+    border-color: rgb(0, 157, 255);
+}
+
+#viewalltable .mylist table tr th{
+    width: 27%;
+    border-bottom: 2px solid blue;    
+}
+
+#viewalltable .mylist table .data td{
+    text-align: center;
+    height: 10%;
+}
+
+#viewalltable .mylist table tr #U_Id{
+    max-width: 10%;
+}
+
+#viewalltable .mylist table tr #actions{
+    width: 23%;
+}
+
+#viewalltable .mylist table tr #actions #buttons{
+    display: flexbox;
+}
+

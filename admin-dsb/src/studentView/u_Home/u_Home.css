@@ -1,0 +1,17 @@
+.topsection{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    justify-content: space-around;  
+    align-items: center; 
+}
+
+a{
+    text-decoration: none;
+}
+
+.topsection .py-11 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* grid-template-columns: 0.5fr 0.5fr; */
+}

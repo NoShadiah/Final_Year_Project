@@ -1,7 +1,8 @@
 import {useState, useEffect} from "react";
-import "./styling.css";
+import "./viewall.css";
+import {myusers} from "./data.js";
 
-export function Users() {
+export function AllUsers() {
     
 
     // Fecth users
@@ -9,22 +10,7 @@ export function Users() {
     useEffect(()=>{
         
         
-        // const fetchUsers =() =>{
-        //     const token = localStorage.getItem('access_token');
-        //     fetch('http://localhost:5000/api/v2/users/all',{
-        //         headers : { 
-        //           'Content-Type': 'application/json',
-        //         //   'Accept': 'application/json',
-        //           'Authorization': `Bearer ${token}`
-        //          }
-        //   })
-        //   .then((response) =>response.json() )
-        //   .then((data)=>{setUsers(data); localStorage.setItem('myUsers', JSON.stringify(data))})
-        //   .catch(error=>console.error(error))
-            
-           
-        // }
-        // fetchUsers();
+        
         const fetchUsers = () => {
             const token = localStorage.getItem('access_token');
             
@@ -52,36 +38,28 @@ export function Users() {
     console.log("users state:",users)
     // console.log("storageUsers", JSON.parse(localStorage.getItem("myUsers")))
     return (
-            <div id='table'>
+            <div id='viewalltable'>
                 
-                <div className='list'>
+                <div className='mylist'>
                    <table>
                          <tr className="head">
-                            <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                            <th id="U_Id">User Id</th>
+                            <th>Full Name</th>
                             <th>Email</th>
                             <th>User Type</th>
-                            <th>Contact</th>
-                            <th>Address</th>
-                            <th>Gender</th>
-                            <th>Registered at</th>
-                            <th>Updated at</th>
+                            <th id="actions">Actions</th>
+                            
                         </tr>
                         <hr></hr>
                         {
-            users?.map(user =>(
-                                <tr className="head">
-                                    <td>{user["Id"]}</td>
-                                    <td>{user["First name"]}</td>
-                                    <td>{user["Last name"]}</td>
-                                    <td>{user["Email"]}</td>
-                                    <td>{user["User type"]}</td>
-                                    <td>{user["Contact"]}</td>
-                                    <td>{user["Address"]}</td>
-                                    <td>{user["Gender"]}</td>
-                                    <td>{user["Registered at"]}</td>
-                                    <td>{user["Updated at"]}</td>
+            myusers?.map(user =>(
+                                <tr className="data">
+                                    <td>{user["U_Id"]}</td>
+                                    <td>{user["F_name"]} {user["L_name"]}</td>
+                                    <td>{user["email"]}</td>
+                                    <td>{user["user_type"]}</td>
+                                    <td> <div id="buttons"><button>View</button> <button>Delete</button></div></td>
+                                    
                                 </tr>))
                         }
                                 

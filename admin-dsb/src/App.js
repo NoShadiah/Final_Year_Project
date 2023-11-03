@@ -10,6 +10,7 @@ import { Navbar } from "./Layout/layout";
 import { Forgotpassword } from "./components/login_signup/forgotpassword";
 import { RegisterUser } from "./components/users/register";
 import { VerifyEmail } from "./components/login_signup/verify";
+import { S_Home } from "./studentView/u_Home/u_Home";
 
 export default function App(){
   const [loggedIn, setLoggedIn] = useState(false);
@@ -30,6 +31,8 @@ export default function App(){
                       <Route path="/signup" element={<SignUp/>} /> 
                       <Route path="/passwordreset" element={<Forgotpassword/>}/> 
                       <Route path="/verify" element={<VerifyEmail/>}/>
+                      <Route path="/studenthome" element={<S_Home/>}/>
+                      
             </Routes>
         </Router>
     </>
